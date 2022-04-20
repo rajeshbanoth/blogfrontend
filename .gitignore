@@ -1,0 +1,6 @@
+node_modules
+ckeditor5
+.next
+
+.env
+/public/sitemap.xml
