@@ -27,9 +27,10 @@ import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
-import { API, APP_NAME } from '../../config';
+import { API, APP_NAME, DOMAIN, FB_APP_ID } from '../../config';
 import SearchHeader from '../../components/SearchHeader'
 import StickyFooter from '../../components/StickyFooter'
+import Head from 'next/head';
 
 
 
@@ -197,12 +198,12 @@ const SearchBar=()=>{
         <title>
             {APP_NAME}|Find What You Want
         </title>
-        <meta name="description" content={"Gloom||Bogs||" + blog.mdesc} />
+        <meta name="description" content={"Gloom||Search"} />
         <link rel="canonical" href={`${DOMAIN}/search`} />
         <meta property="og:title" content={`Gloom|| ${APP_NAME}`} />
         <meta property="og:description" content={"Gloom|| Search Your Favorite Content "} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`${DOMAIN}/blogs/${query.slug}`} />
+        <meta property="og:url" content={`${DOMAIN}/search`} />
         <meta property="og:site_name" content={`${APP_NAME}:Find What You Want`} />
         <meta property="og:image:type" content="image/jpg" />
         <meta property="fb:app_id" content={`${FB_APP_ID}`} />
@@ -212,7 +213,6 @@ const SearchBar=()=>{
 
   const searchedBlogs = (results = []) => {
     return (
-
 
       <List sx={{ width: '100%'}}>
 
