@@ -162,7 +162,7 @@ export default function Tablecomponent(props) {
 
 axios.post(INDEX_URL+"/addindex",{url,type}).then(res=>{
 
-console.log( JSON.stringify(res.data.urlNotificationMetadata) )
+//console.log( JSON.stringify(res.data.urlNotificationMetadata) )
  setstatus(JSON.stringify(JSON.stringify(res.data.urlNotificationMetadata)))
 
   

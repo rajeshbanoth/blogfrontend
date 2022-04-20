@@ -1,11 +1,13 @@
 import ReactQuill, { Quill } from 'react-quill-with-table';
-import 'react-quill/dist/quill.snow.css';
+// import 'react-quill/dist/quill.snow.css';
 import ImageResize from 'quill-image-resize-module-react';
 import { ImageDrop } from 'quill-image-drop-module';
 import * as QuillTableUI from 'quill-table-ui'
+import BlotFormatter from 'quill-blot-formatter';
 
 Quill.register('modules/imageResize', ImageResize);
 Quill.register('modules/imageDrop', ImageDrop);
+Quill.register('modules/blotFormatter', BlotFormatter);
 Quill.register({
   'modules/tableUI': QuillTableUI.default
 }, true)
@@ -60,6 +62,7 @@ Editor.modules = {
     modules: ['Resize', 'DisplaySize']
   },
   imageDrop: true,
+  blotFormatter: {}
 };
 
 /*

@@ -374,10 +374,10 @@ const SingleBlog = ({ blog, query }) => {
                         <div className="container">
                             <section>
                                 <div className="col-md-12 lead" >
-                                    <Typography component='div' >
+                                    <Typography style={{ color: '#595855' }}  >
                                     {/* style={{ color: '#595855' }}  */}
 
-                                    <Box sx={{ fontWeight: 500, m: 1,color:'#595855',objectFit:'cover',  objectPosition: '20% 10%' }}>{renderHTML(blog.body)}</Box>
+                                    {renderHTML(blog.body)}
                                         
 
                                     </Typography>
