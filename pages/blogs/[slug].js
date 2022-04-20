@@ -1,4 +1,4 @@
-import { Toolbar } from '@mui/material';
+import { Paper, Toolbar } from '@mui/material';
 import Chip from '@mui/material/Chip';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
@@ -15,6 +15,8 @@ import DisqusThread from '../../components/DisqusThread';
 //import Link from 'next/link';
 import Layout from '../../components/Layout';
 import { API, APP_NAME, DOMAIN, FB_APP_ID } from '../../config';
+
+
 
 import {
     EmailShareButton,
@@ -71,11 +73,21 @@ const SingleBlog = ({ blog, query }) => {
 
     const loadRelated = () => {
         listRelated({ blog }).then(data => {
+
+            if(data!==undefined)
+            {
+                
             if (data.error) {
-                // console.log(data.error);
-            } else {
-                setRelated(data);
+                console.log(data.error);
+               } else {
+                   setRelated(data);
+               }
+
             }
+            else{
+                console.log("undefined data")
+            }
+
         });
     };
 
@@ -88,7 +100,7 @@ const SingleBlog = ({ blog, query }) => {
         let limit = 0;
         return listBlogsWithCategoriesAndTags(skip, limit).then(data => {
             if (data.error) {
-                //  console.log(data.error);
+                 console.log(data.error);
             } else {
 
                 // console.log(data.categories)
@@ -188,11 +200,13 @@ const SingleBlog = ({ blog, query }) => {
         <React.Fragment>
             {head()}
             <Layout>
+
+                <Paper>
                 <main>
                     <article>
                         <div className="container-fluid" >
                             <section>
-                                <Container maxWidth="lg" style={{background:'#ffffff'}}>
+                                <Container maxWidth="lg">
 
                                     <Toolbar
                                         component="nav"
@@ -246,22 +260,53 @@ const SingleBlog = ({ blog, query }) => {
 
 
 
-                                    <div style={{ paddingBottom: '10px' }}>
-                                        <h5 style={{ fontSize: '40px', color: '#404142' }} className="display-2 pb-3 pt-3 text-center font-weight-bold">{blog.title}</h5>
+                                    <div className="display-2 pb-3 pt-3 text-center font-weight-bold" style={{ marginTop: '30px', display: 'center',overflowWrap:'break-word', justifyContent: 'center', paddingLeft: '5px', paddingRight: '5px' }}>
+
+                                        
+                                        {/* <h5 style={{ fontSize: '40px', color: '#404142' }} className="display-2 pb-3 pt-3 text-center font-weight-bold">{blog.title}</h5> */}
+                                        <Typography component='div'>
+                                        <Box sx={{ fontWeight: 1000, m: 1,fontSize: '30px',color:'#535353' }}>{blog.title}</Box>
+                                            
+{/* 
+                                        sx={{
+ 
+           minHeight:{ xs: 233, md: 450,lg:400},
+           minWidth:{ xs: 350, md: 450,lg:700},
+          maxHeight: { xs: 233, md: 450,lg:400 },
+          maxWidth: { xs: 350, md: 450,lg:700},
+        }} */}
+                                            
+                                            </Typography>
+
+
 
                                     </div>
 
                                     <div className="row" style={{ marginTop: '30px', display: 'center', justifyContent: 'center', paddingLeft: '5px', paddingRight: '5px' }}>
 
-
+{/* 
                                         <ReactRoundedImage
                                             image={`${API}/blog/photo/${blog.slug}`}
                                             roundedColor="#66A5CC"
-                                            imageWidth="420"
+                                            imageWidth="100%"
                                             imageHeight="300"
                                             roundedSize="0"
                                             borderRadius="0"
-                                        />
+                                        /> */}
+
+<Box
+        component="img"
+        sx={{
+        //   height: 233,
+        //   width: 350,
+           minHeight:{ xs: 233, md: 450,lg:200},
+           minWidth:{ xs: 350, md: 450,lg:700},
+          maxHeight: { xs: 233, md: 450,lg:400 },
+          maxWidth: { xs: 350, md: 450,lg:700},
+        }}
+        alt="The house from the offer."
+        src={`${API}/blog/photo/${blog.slug}`}
+      />
 
                                     </div>
 
@@ -326,11 +371,14 @@ const SingleBlog = ({ blog, query }) => {
                             </section>
                         </div> */}
 
-                        <div className="container" style={{background:'#ffffff'}}>
+                        <div className="container">
                             <section>
-                                <div className="col-md-12 lead">
-                                    <Typography style={{ color: '#595855' }}>
-                                        {renderHTML(blog.body)}
+                                <div className="col-md-12 lead" >
+                                    <Typography component='div' >
+                                    {/* style={{ color: '#595855' }}  */}
+
+                                    <Box sx={{ fontWeight: 500, m: 1,color:'#595855',objectFit:'cover',  objectPosition: '20% 10%' }}>{renderHTML(blog.body)}</Box>
+                                        
 
                                     </Typography>
 
@@ -346,6 +394,9 @@ const SingleBlog = ({ blog, query }) => {
                         <div className="container pt-5 pb-5">{showComments()}</div>
                     </article>
                 </main>
+
+                </Paper>
+
             </Layout>
         </React.Fragment>
     );

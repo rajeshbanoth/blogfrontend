@@ -108,50 +108,27 @@ body {
   }
   
   /* Snow Theme */
-  #root .ql-snow.ql-toolbar {
-    display: block;
-    background: #eaecec;
-    border-top-left-radius: 0.5em;
-    border-top-right-radius: 0.5em;
-  }
-  
-  #root .ql-editor {
-    min-height: 18em;
-  }
-  .quill-editor iframe {
-    pointer-events: none;
-}
-
-/*  table css */
-
-table {
-    table-layout: fixed;
-    width: 100%;
-    border: 1px solid red;
-  }
-  
-  td {
-    border: 1px solid blue;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
-
-
-
-
-  /*   quill css*/
-
-  .ql-code-block{
-      background-color: #313131;
-
-  }
-
+ 
   .ql-code-block-container{
-    background-color: #313131;
+    background-color: #003B73;
 
   }
+  .ql-code-block{
+      padding: 4px;
+     
+      color: #ddd;
+      
+    
+  }
+  .ql-syntax{
+    background-color: #003B73;
+    padding: 4px;
+     
+    color: #ddd;
+
+  }
+
+  
 
 
 
