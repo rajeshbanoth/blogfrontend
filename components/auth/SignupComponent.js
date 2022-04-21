@@ -77,7 +77,7 @@ export default function SignupComponent() {
                 <CssBaseline />
                 <Box
                     sx={{
-                        marginTop: 8,
+                        marginTop: 3,
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
@@ -143,10 +143,7 @@ export default function SignupComponent() {
                         {/* <Practice/> */}
 
                         <div 
-        style={{
-            margin: 'auto',
-            width: '70%',
-        }}>
+        >
             
             <LoginGoogle />
 

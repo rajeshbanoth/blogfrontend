@@ -125,10 +125,7 @@ export default function SigninComponent() {
             </Button>
          
         <div 
-        style={{
-            margin: 'auto',
-            width: '70%',
-        }}>
+        >
             
             <LoginGoogle />
 

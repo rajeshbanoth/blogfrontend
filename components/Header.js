@@ -223,6 +223,10 @@ const Header = () => {
       <MenuItem >
         <Button href='/user/crud/blog'>Write a blog</Button>
       </MenuItem>
+      <MenuItem >
+        <Button href='/aboutus'> About Us</Button>
+
+      </MenuItem>
     </Menu>
   );
 
@@ -348,6 +352,8 @@ const Header = () => {
                 Write a blog
 
               </Button >
+
+              <Button href='/aboutus'> About Us</Button>
             </Box>
             <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
               <IconButton

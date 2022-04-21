@@ -56,7 +56,7 @@ const Img = styled('img')({
 
 const Card = ({ blog }) => {
 
-    console.log(blog.slug,blog.title,"slug")
+    // console.log(blog.slug,blog.title,"slug")
 
     const showBlogCategories = blog =>
         blog.categories.map((c, i) => (
