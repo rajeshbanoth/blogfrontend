@@ -48,7 +48,7 @@ export default function App() {
               </p>
             </div>
 
-            {/* <div className='col-md-2 col-lg-2 col-xl-2 mx-auto mb-4'>
+             <div className='col-md-2 col-lg-2 col-xl-2 mx-auto mb-4'>
               <h6 className='text-uppercase fw-bold mb-4'>Social Media</h6>
               <p>
                 <a href='#!' className='text-reset'>
@@ -66,7 +66,7 @@ export default function App() {
                 </a>
               </p>
 
-            </div> */}
+            </div> 
 
             <div className='col-md-3 col-lg-2 col-xl-2 mx-auto mb-4'>
               <h6 className='text-uppercase fw-bold mb-4'>Useful links</h6>
@@ -104,7 +104,7 @@ export default function App() {
               </p>
               <p>
                 <i className='fas fa-envelope me-3'></i>
-                help.gloom@gmail.com
+                help@
               </p>
               <p>
                 <i className='fas fa-phone me-3'></i> +91889754034

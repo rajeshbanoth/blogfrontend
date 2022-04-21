@@ -46,7 +46,7 @@ const Img = styled('img')({
              Privacy Policy for Gloom
               </Typography>
 
-              <Typography variant="body1" color="text.secondary">
+              <Typography variant="body1" color="text.secondary" style={{wordBreak: 'break-word'}}>
               
 
 <p>At Gloom, accessible from https://gloom.co.in, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Gloom and how we use it.</p>

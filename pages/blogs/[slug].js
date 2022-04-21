@@ -374,7 +374,7 @@ const SingleBlog = ({ blog, query }) => {
                         <div className="container">
                             <section>
                                 <div className="col-md-12 lead" >
-                                    <Typography style={{ color: '#595855' }}  >
+                                    <Typography style={{ color: '#595855',wordBreak: 'break-word' }}  >
                                     {/* style={{ color: '#595855' }}  */}
 
                                     {renderHTML(blog.body)}
