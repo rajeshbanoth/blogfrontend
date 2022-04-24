@@ -17,17 +17,14 @@ import  YoutubeEmbed from 'editorjs-youtube-embed'
 import Gist from 'editorjs-github-gist-plugin';
 import CodeTool from 'editorjs-code-tool'
 import ChangeCase from 'editorjs-change-case';
-
+import CodeMirror from '../dist/bundle'
+import NestedList from '@editorjs/nested-list';
 const CodeBox = require('@bomdi/codebox');
 
 
 
 export const EDITOR_JS_TOOLS = {
-  embed: {
-    class: Embed,
-    inlineToolbar: true,
-   
-  },
+  embed:Embed,
   table: Table,
   marker: Marker,
   list: List,
@@ -43,7 +40,8 @@ export const EDITOR_JS_TOOLS = {
   inlineCode: InlineCode,
   simpleImage: SimpleImage,
   youtubeEmbed: YoutubeEmbed,
-  // code:CodeTool,
+  
+  // code:CodeMirror,
   // codeBox: {
   //   class: CodeBox,
   //   config: {

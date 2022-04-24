@@ -23,9 +23,9 @@ import Toggle from '../Toggle';
 
 
 
-const Editor= dynamic(() => import('../../helpers/Editor'), { ssr: false });
+const Editor = dynamic(() => import('../../helpers/Editor'), { ssr: false });
 
-const MediumEditor= dynamic(() => import('../../Editor/MediumEditor'), { ssr: false });
+const MediumEditor = dynamic(() => import('../../Editor/MediumEditor'), { ssr: false });
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -84,7 +84,7 @@ const CreateBlog = ({ router }) => {
     };
 
     const [categories, setCategories] = useState([]);
-    const [editoroptions,setEdiorOption]=useState('Editor')
+    const [editoroptions, setEdiorOption] = useState('Editor')
     const [tags, setTags] = useState([]);
 
     const [dummycat, setdummycat] = useState([])
@@ -92,10 +92,10 @@ const CreateBlog = ({ router }) => {
 
     const [checked, setChecked] = useState([]); // categories
     const [checkedTag, setCheckedTag] = useState([]); // tags
-    const [createtag,setcreatetag]=useState(false)
-    const [searchtag,setsearchtag]=useState('')
-    const [name,setname]=useState('')
-    const [editorState,setEditor]=useState(true)
+    const [createtag, setcreatetag] = useState(false)
+    const [searchtag, setsearchtag] = useState('')
+    const [name, setname] = useState('')
+    const [editorState, setEditor] = useState(true)
 
 
     const [body, setBody] = useState(blogFromLS());
@@ -115,7 +115,7 @@ const CreateBlog = ({ router }) => {
 
     const [imagename, setimagename] = useState('')
 
-    const { error, sizeError, success, formData, title, hidePublishButton, loading ,reload} = values;
+    const { error, sizeError, success, formData, title, hidePublishButton, loading, reload } = values;
     const token = getCookie('token');
 
     useEffect(() => {
@@ -188,35 +188,35 @@ const CreateBlog = ({ router }) => {
         }
     };
 
-   const  handlebodydata =(e)=>{
-    setBody(e);
-    console.log(e)
-    formData.set('body', e);
-    if (typeof window !== 'undefined') {
-        localStorage.setItem('blog', JSON.stringify(e));
+    const handlebodydata = (e) => {
+        setBody(e);
+        console.log(e)
+        formData.set('body', e);
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('blog', JSON.stringify(e));
+        }
     }
-   }
-// edior js handlebodydata
-   const handlejsondata=(jsondata,htmldata)=>{
-  
-   const string = JSON.stringify(jsondata)
-   console.log(string)
-    formData.set('body', string);
-    formData.set('html', htmldata);
-    if (typeof window !== 'undefined') {
-        localStorage.setItem('jsonblog', string);
-    }
-    
-}
+    // edior js handlebodydata
+    const handlejsondata = (jsondata, htmldata) => {
 
-const handlequilleditor =()=>{
-     setEditor(true)
-     formData.delete('body');
-}
-const handleeditorjs =()=>{
-    setEditor(false)
-    formData.delete('body');
-}
+        const string = JSON.stringify(jsondata)
+        console.log(string)
+        formData.set('body', string);
+        formData.set('html', htmldata);
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('jsonblog', string);
+        }
+
+    }
+
+    const handlequilleditor = () => {
+        setEditor(true)
+        formData.delete('body');
+    }
+    const handleeditorjs = () => {
+        setEditor(false)
+        formData.delete('body');
+    }
 
     const handleToggle = c => () => {
         setValues({ ...values, error: '' });
@@ -249,8 +249,8 @@ const handleeditorjs =()=>{
         setCheckedTag(all);
         formData.set('tags', all);
     };
-    const handletagurl =()=>{
-       
+    const handletagurl = () => {
+
         setCheckedTag([...checkedTag, searchtag]);
 
     }
@@ -306,20 +306,20 @@ const handleeditorjs =()=>{
         );
     };
 
- 
 
-const handleselectedtag =(e)=>{
-    e.preventDefault();
-    // console.log('create category', name);
-    const token = getCookie('token');
-    create({ name }, token).then(data => {
-        if (data.error) {
-            setValues({ ...values, error: data.error, success: false });
-        } else {
-            setValues({ ...values, error: false, success: false, name: '', removed: false, reload: !reload });
-        }
-    });
-}
+
+    const handleselectedtag = (e) => {
+        e.preventDefault();
+        // console.log('create category', name);
+        const token = getCookie('token');
+        create({ name }, token).then(data => {
+            if (data.error) {
+                setValues({ ...values, error: data.error, success: false });
+            } else {
+                setValues({ ...values, error: false, success: false, name: '', removed: false, reload: !reload });
+            }
+        });
+    }
 
 
     const showError = () => (
@@ -350,9 +350,9 @@ const handleselectedtag =(e)=>{
                 <Paper style={{ borderRadius: '10px' }}>
 
                     <div style={{ padding: '20px' }}>
-                    <div className="form-group" >
+                        <div className="form-group" >
                             <Box>
-                                <Toggle  handlequill={handlequilleditor}  editorjs={handleeditorjs}/>
+                                <Toggle handlequill={handlequilleditor} editorjs={handleeditorjs} />
                             </Box>
                         </div>
 
@@ -374,10 +374,10 @@ const handleselectedtag =(e)=>{
                                 onChange={handleBody}
 
                             /> */}
-{editorState ? (
-                            <Editor handlechange={handlebodydata} value={body} />): ( <MediumEditor editorjson={handlejsondata}/> )}
+                            {editorState ? (
+                                <Editor handlechange={handlebodydata} value={body} />) : (<MediumEditor editorjson={handlejsondata} />)}
 
-                           
+
                         </div>
 
                         <div>
@@ -431,11 +431,12 @@ const handleselectedtag =(e)=>{
                     e.target.value.toLowerCase()
                 ) !== -1;
             });
-            if(updatedblogs.length===0)
-            {
+
+
+            if (updatedblogs.length === 0) {
                 setcreatetag(true)
             }
-            else{
+            else {
                 setcreatetag(false)
             }
 
@@ -524,10 +525,7 @@ const handleselectedtag =(e)=>{
 
                         <Paper style={{ borderRadius: '10px' }}>
 
-                        {/* {showSelectedtags()} */}
-
-                       
-
+ 
 
                             <Typography variant='h4' style={{ padding: '10px' }}>Tags</Typography>
                             <Search>
@@ -541,24 +539,25 @@ const handleselectedtag =(e)=>{
 
                                 />
                             </Search>
-                            {createtag && 
-                            <>
-                            <div style={{paddingLeft:'38.4%',paddingRight:'20%',paddingTop:'10px'}}>
-<Button
+                            {createtag &&
+                                <>
+                                    <div style={{ paddingLeft: '38.4%', paddingRight: '20%', paddingTop: '10px' }}>
+                                        <Button
 
-sx={{ mt: 3, mb: 2,color:'#ffffff',backgroundColor:'#121212',
-"&:hover": {
-  backgroundColor:'#121212',
-}
+                                            sx={{
+                                                mt: 3, mb: 2, color: '#ffffff', backgroundColor: '#121212',
+                                                "&:hover": {
+                                                    backgroundColor: '#121212',
+                                                }
 
 
-}}
+                                            }}
 
-variant='contained' onClick={handleselectedtag}>Create Tag</Button>
+                                            variant='contained' onClick={handleselectedtag}>Create Tag</Button>
 
-</div>
-  </>}
-                           
+                                    </div>
+                                </>}
+
                             <hr />
                             <ul style={{ maxHeight: '200px', overflowY: 'scroll' }}>{showTags()}</ul>
 
