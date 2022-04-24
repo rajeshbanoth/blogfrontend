@@ -16,7 +16,6 @@ import { singleBlog, updateBlog } from '../../actions/blog';
 import { getCategories } from '../../actions/category';
 import { getTags } from '../../actions/tag';
 import { API } from '../../config';
-import { QuillFormats, QuillModules } from '../../helpers/quill';
 import '../../node_modules/react-quill/dist/quill.snow.css';
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 const Editor= dynamic(() => import('../../helpers/Editor'), { ssr: false });

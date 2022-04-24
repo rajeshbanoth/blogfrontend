@@ -16,17 +16,11 @@ import { useEffect, useState } from 'react';
 import { getCookie } from '../../actions/auth';
 import { createBlog } from '../../actions/blog';
 import { getCategories } from '../../actions/category';
-import { getTags } from '../../actions/tag';
-import Toggle from '../Toggle'
-//import Parser from 'editorjs-viewer'
-import { QuillFormats, QuillModules } from '../../helpers/quill';
-import DeleteIcon from '@mui/icons-material/Delete';
-
-
+import { create, getTags } from '../../actions/tag';
 import '../../node_modules/react-quill/dist/quill.snow.css';
-import { create} from '../../actions/tag';
+import Toggle from '../Toggle';
 
-const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
+
 
 
 const Editor= dynamic(() => import('../../helpers/Editor'), { ssr: false });
@@ -102,7 +96,7 @@ const CreateBlog = ({ router }) => {
     const [searchtag,setsearchtag]=useState('')
     const [name,setname]=useState('')
     const [editorState,setEditor]=useState(true)
-    const [editorObject,seteditorObject]=useState('')
+
 
     const [body, setBody] = useState(blogFromLS());
     const [values, setValues] = useState({

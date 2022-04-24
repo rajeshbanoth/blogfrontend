@@ -1,9 +1,9 @@
-import ReactQuill, { Quill } from 'react-quill-with-table';
+import BlotFormatter from 'quill-blot-formatter';
+import { ImageDrop } from 'quill-image-drop-module';
 // import 'react-quill/dist/quill.snow.css';
 import ImageResize from 'quill-image-resize-module-react';
-import { ImageDrop } from 'quill-image-drop-module';
-import * as QuillTableUI from 'quill-table-ui'
-import BlotFormatter from 'quill-blot-formatter';
+import * as QuillTableUI from 'quill-table-ui';
+import ReactQuill, { Quill } from 'react-quill-with-table';
 
 Quill.register('modules/imageResize', ImageResize);
 Quill.register('modules/imageDrop', ImageDrop);

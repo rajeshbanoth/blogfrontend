@@ -1,12 +1,11 @@
-import ReactDOM from "react-dom";
-import React, { Component, useRef } from "react";
-
-import { createReactEditorJS } from "react-editor-js";
-
-import { EDITOR_JS_TOOLS } from "./constants";
-import  edjsHTML from 'editorjs-html'
-import Parser from 'editorjs-viewer'
 import DragDrop from 'editorjs-drag-drop';
+import edjsHTML from 'editorjs-html';
+import Parser from 'editorjs-viewer';
+import React from "react";
+import { createReactEditorJS } from "react-editor-js";
+import { EDITOR_JS_TOOLS } from "./constants";
+
+
 
 const ReactEditorJS = createReactEditorJS();
 const edjsParser  = edjsHTML(); 
