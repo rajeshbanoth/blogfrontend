@@ -385,13 +385,6 @@ const SingleBlog = ({ blog, query }) => {
 
 
                                         </Typography></div>    </>)}
-
-
-
-
-
-
-
                                 </section>
                             </div>
 

@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@bomdi/codebox": "^1.0.12",
     "@editorjs/checklist": "latest",
     "@editorjs/code": "latest",
     "@editorjs/delimiter": "latest",
@@ -39,6 +40,7 @@
     "axios": "^0.26.1",
     "dotenv": "^16.0.0",
     "editorjs-blocks-react-renderer": "^1.2.4",
+    "editorjs-code-tool": "^1.0.4",
     "editorjs-github-gist-plugin": "^1.1.0",
     "editorjs-html": "^3.4.2",
     "editorjs-parser": "^1.5.3",
@@ -98,6 +100,8 @@
     "xhr2": "^0.2.1"
   },
   "devDependencies": {
-    "@svgr/webpack": "^6.2.1"
+    "@svgr/webpack": "^6.2.1",
+    "editorjs-change-case": "^0.0.3",
+    "editorjs-drag-drop": "^1.0.3"
   }
 }

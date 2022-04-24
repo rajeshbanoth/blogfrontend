@@ -6,6 +6,7 @@ import { createReactEditorJS } from "react-editor-js";
 import { EDITOR_JS_TOOLS } from "./constants";
 import  edjsHTML from 'editorjs-html'
 import Parser from 'editorjs-viewer'
+import DragDrop from 'editorjs-drag-drop';
 
 const ReactEditorJS = createReactEditorJS();
 const edjsParser  = edjsHTML(); 
@@ -23,6 +24,12 @@ const MediumEditor=(props)=> {
    props.editorjson(savedData,Parser(savedData.blocks))
 
   }, [])
+
+  const handleReady = () => {
+    const editor = editorCore.current._editorJS; 
+    
+    new DragDrop(editor);
+  };
  
     return (
       <>
@@ -30,6 +37,7 @@ const MediumEditor=(props)=> {
      onInitialize={handleInitialize}
       onChange={handleSave}
         tools={EDITOR_JS_TOOLS}
+        onReady = {handleReady}
         placeholder= 'Start Writing Your Content'
       
         defaultValue={props.value}

@@ -27,7 +27,8 @@ const MediumEditor=(props)=> {
     return (
       <>
     
-      <ReactEditorJS
+    <div style={{minWidth:'100%'}}>
+    <ReactEditorJS
       
       
       onInitialize={handleInitialize}
@@ -37,6 +38,8 @@ const MediumEditor=(props)=> {
       
         defaultValue={props.value}
       />
+    </div>
+
       </>
     );
   }

@@ -15,6 +15,10 @@ import InlineCode from '@editorjs/inline-code'
 import SimpleImage from '@editorjs/simple-image'
 import  YoutubeEmbed from 'editorjs-youtube-embed'
 import Gist from 'editorjs-github-gist-plugin';
+import CodeTool from 'editorjs-code-tool'
+import ChangeCase from 'editorjs-change-case';
+
+const CodeBox = require('@bomdi/codebox');
 
 
 
@@ -39,5 +43,21 @@ export const EDITOR_JS_TOOLS = {
   inlineCode: InlineCode,
   simpleImage: SimpleImage,
   youtubeEmbed: YoutubeEmbed,
+  // code:CodeTool,
+  // codeBox: {
+  //   class: CodeBox,
+  //   config: {
+  //     themeURL: 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/styles/dracula.min.css', // Optional
+  //     themeName: 'atom-one-dark', // Optional
+  //     useDefaultTheme: 'light' // Optional. This also determines the background color of the language select drop-down
+  //   }
+  // },
+  changeCase: {
+    class: ChangeCase,
+    config: {
+      showLocaleOption: true, // enable locale case options
+      locale: 'tr' // or ['tr', 'TR', 'tr-TR']
+    }
+  }
  
 }
