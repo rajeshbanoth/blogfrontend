@@ -74,7 +74,7 @@ Rajesh Banoth
 
           </Grid>
           <Grid item>
-          <Gist id='5bb5e978fffa609af755474f55c036ac' />
+        
 
 
 
