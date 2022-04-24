@@ -20,6 +20,7 @@ import { QuillFormats, QuillModules } from '../../helpers/quill';
 import '../../node_modules/react-quill/dist/quill.snow.css';
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 const Editor= dynamic(() => import('../../helpers/Editor'), { ssr: false });
+const MediumEditor= dynamic(() => import('../../Editor/MediumEditor'), { ssr: false });
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -65,6 +66,7 @@ const Search = styled('div')(({ theme }) => ({
 
 const BlogUpdate = ({ router }) => {
     const [body, setBody] = useState('');
+    const [jsondata,setjsondata]=useState(null)
 
     const [categories, setCategories] = useState([]);
     const [tags, setTags] = useState([]);
@@ -83,7 +85,8 @@ const BlogUpdate = ({ router }) => {
         success: '',
         formData: '',
         title: '',
-        body: ''
+        body: '',
+        jsonbody:''
     });
 
     const { error, success, formData, title } = values;
@@ -102,10 +105,12 @@ const BlogUpdate = ({ router }) => {
                 if (data.error) {
                     console.log(data.error);
                 } else {
+                    console.log(JSON.parse(data.body))
                     setValues({ ...values, title: data.title });
                     setBody(data.body);
                     setCategoriesArray(data.categories);
                     setTagsArray(data.tags);
+                    setjsondata(JSON.parse(data.body))
                 }
             });
         }
@@ -199,6 +204,19 @@ const BlogUpdate = ({ router }) => {
         }
     };
 
+
+    // edior js handlebodydata
+   const handlejsondata=(jsondata,htmldata)=>{
+  
+    const string = JSON.stringify(jsondata)
+    console.log(string)
+     formData.set('body', string);
+     formData.set('html', htmldata);
+     if (typeof window !== 'undefined') {
+         localStorage.setItem('jsonblog', string);
+     }
+     
+ }
     const showCategories = () => {
         return (
             categories &&
@@ -319,7 +337,10 @@ const BlogUpdate = ({ router }) => {
                         onChange={handleBody}
                     /> */}
 
-<Editor handlechange={handleBody} value={body}/>
+{body.substring(2,6)==="time" ? (<>  <MediumEditor editorjson={handlejsondata} value={jsondata}/> </>):(<><Editor handlechange={handleBody} value={body}/> </>)}
+
+
+
 
 
 

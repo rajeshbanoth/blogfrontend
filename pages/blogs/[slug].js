@@ -1,5 +1,6 @@
 import { Paper, Toolbar } from '@mui/material';
 import Chip from '@mui/material/Chip';
+import dynamic from 'next/dynamic';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/system';
@@ -15,7 +16,7 @@ import DisqusThread from '../../components/DisqusThread';
 //import Link from 'next/link';
 import Layout from '../../components/Layout';
 import { API, APP_NAME, DOMAIN, FB_APP_ID } from '../../config';
-
+const MediumEditor = dynamic(() => import('../../Editor/Readdata'), { ssr: false });
 
 
 import {
@@ -74,17 +75,16 @@ const SingleBlog = ({ blog, query }) => {
     const loadRelated = () => {
         listRelated({ blog }).then(data => {
 
-            if(data!==undefined)
-            {
-                
-            if (data.error) {
-                console.log(data.error);
-               } else {
-                   setRelated(data);
-               }
+            if (data !== undefined) {
+
+                if (data.error) {
+                    console.log(data.error);
+                } else {
+                    setRelated(data);
+                }
 
             }
-            else{
+            else {
                 console.log("undefined data")
             }
 
@@ -100,7 +100,7 @@ const SingleBlog = ({ blog, query }) => {
         let limit = 0;
         return listBlogsWithCategoriesAndTags(skip, limit).then(data => {
             if (data.error) {
-                 console.log(data.error);
+                console.log(data.error);
             } else {
 
                 // console.log(data.categories)
@@ -137,7 +137,7 @@ const SingleBlog = ({ blog, query }) => {
     const head = () => (
         <Head>
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1526259079521468"
-     crossorigin="anonymous"></script>
+                crossorigin="anonymous"></script>
             <title>
                 {blog.title} | {APP_NAME}
             </title>
@@ -188,6 +188,8 @@ const SingleBlog = ({ blog, query }) => {
         ));
     };
 
+
+
     const showComments = () => {
         return (
             <div>
@@ -202,125 +204,28 @@ const SingleBlog = ({ blog, query }) => {
             <Layout>
 
                 <Paper>
-                <main>
-                    <article>
-                        <div className="container-fluid" >
-                            <section>
-                                <Container maxWidth="lg">
+                    <main>
+                        <article>
+                            <div className="container-fluid" >
+                                <section>
+                                    <Container maxWidth="lg">
 
-                                    <Toolbar
-                                        component="nav"
-                                        variant="dense"
-                                        sx={{ justifyContent: 'space-between', overflowX: 'auto' }}
-                                    >
+                                        <Toolbar
+                                            component="nav"
+                                            variant="dense"
+                                            sx={{ justifyContent: 'space-between', overflowX: 'auto' }}
+                                        >
 
-                                        {showAllCategories()}
-                                    </Toolbar>
+                                            {showAllCategories()}
+                                        </Toolbar>
 
-                                </Container>
+                                    </Container>
 
-                            </section>
+                                </section>
 
-                            <section>
-                                <div className="container" style={{background:'#ffffff'}}>
+                                <section>
+                                    <div className="container" style={{ background: '#ffffff' }}>
 
-                                    <Box
-                                        sx={{
-                                            display: 'flex',
-                                            //justifyContent: 'center',
-                                            backgroundColor: 'tranparent',
-                                            flexWrap: 'wrap',
-                                            listStyle: 'none',
-                                            p: 0.5,
-                                            m: 0,
-                                        }}
-                                        component="ul"
-                                    >
-                                        <EmailShareButton url={`${DOMAIN}/blogs/${blog.slug}`} >
-                                            <EmailIcon size={40} />
-                                        </EmailShareButton>
-                                        <TwitterShareButton url={`${DOMAIN}/blogs/${blog.slug}`} >
-                                            <TwitterIcon size={40} />
-                                        </TwitterShareButton>
-                                        <FacebookShareButton url={`${DOMAIN}/blogs/${blog.slug}`} >
-                                            <FacebookIcon size={40} />
-                                        </FacebookShareButton>
-                                        <TelegramShareButton url={`${DOMAIN}/blogs/${blog.slug}`} >
-                                            <TelegramIcon size={40} />
-                                        </TelegramShareButton>
-                                        <WhatsappShareButton url={`${DOMAIN}/blogs/${blog.slug}`}>
-                                            <WhatsappIcon  size={40} />
-                                        </WhatsappShareButton>
-                                        <LinkedinShareButton url={`${DOMAIN}/blogs/${blog.slug}`}>
-                                            <LinkedinIcon size={40} />
-
-                                        </LinkedinShareButton>
-
-                                    </Box>
-
-
-
-                                    <div className="display-2 pb-3 pt-3 text-center font-weight-bold" style={{ marginTop: '30px', display: 'center',overflowWrap:'break-word', justifyContent: 'center', paddingLeft: '5px', paddingRight: '5px' }}>
-
-                                        
-                                        {/* <h5 style={{ fontSize: '40px', color: '#404142' }} className="display-2 pb-3 pt-3 text-center font-weight-bold">{blog.title}</h5> */}
-                                        <Typography component='div'>
-                                        <Box sx={{ fontWeight: 1000, m: 1,fontSize: '30px',color:'#535353' }}>{blog.title}</Box>
-                                            
-{/* 
-                                        sx={{
- 
-           minHeight:{ xs: 233, md: 450,lg:400},
-           minWidth:{ xs: 350, md: 450,lg:700},
-          maxHeight: { xs: 233, md: 450,lg:400 },
-          maxWidth: { xs: 350, md: 450,lg:700},
-        }} */}
-                                            
-                                            </Typography>
-
-
-
-                                    </div>
-
-                                    <div className="row" style={{ marginTop: '30px', display: 'center', justifyContent: 'center', paddingLeft: '5px', paddingRight: '5px' }}>
-
-{/* 
-                                        <ReactRoundedImage
-                                            image={`${API}/blog/photo/${blog.slug}`}
-                                            roundedColor="#66A5CC"
-                                            imageWidth="100%"
-                                            imageHeight="300"
-                                            roundedSize="0"
-                                            borderRadius="0"
-                                        /> */}
-
-<Box
-        component="img"
-        sx={{
-        //   height: 233,
-        //   width: 350,
-           minHeight:{ xs: 233, md: 450,lg:200},
-           minWidth:{ xs: 350, md: 450,lg:700},
-          maxHeight: { xs: 233, md: 450,lg:400 },
-          maxWidth: { xs: 350, md: 450,lg:700},
-        }}
-        alt="The house from the offer."
-        src={`${API}/blog/photo/${blog.slug}`}
-      />
-
-                                    </div>
-
-
-                                    <div style={{ marginTop: '30px', display: 'center', justifyContent: 'center' }}>
-
-                                        <Typography padding={1}>
-                                            Written by{' '}
-                                            <Link href={`/profile/${blog.postedBy.username}`}>
-                                                <a>{blog.postedBy.username}</a>
-                                            </Link>{' '}
-                                            | Published {moment(blog.updatedAt).fromNow()}
-
-                                        </Typography>
                                         <Box
                                             sx={{
                                                 display: 'flex',
@@ -333,22 +238,119 @@ const SingleBlog = ({ blog, query }) => {
                                             }}
                                             component="ul"
                                         >
-                                            {showBlogCategories(blog)}
-                                            {showBlogTags(blog)}
+                                            <EmailShareButton url={`${DOMAIN}/blogs/${blog.slug}`} >
+                                                <EmailIcon size={40} />
+                                            </EmailShareButton>
+                                            <TwitterShareButton url={`${DOMAIN}/blogs/${blog.slug}`} >
+                                                <TwitterIcon size={40} />
+                                            </TwitterShareButton>
+                                            <FacebookShareButton url={`${DOMAIN}/blogs/${blog.slug}`} >
+                                                <FacebookIcon size={40} />
+                                            </FacebookShareButton>
+                                            <TelegramShareButton url={`${DOMAIN}/blogs/${blog.slug}`} >
+                                                <TelegramIcon size={40} />
+                                            </TelegramShareButton>
+                                            <WhatsappShareButton url={`${DOMAIN}/blogs/${blog.slug}`}>
+                                                <WhatsappIcon size={40} />
+                                            </WhatsappShareButton>
+                                            <LinkedinShareButton url={`${DOMAIN}/blogs/${blog.slug}`}>
+                                                <LinkedinIcon size={40} />
+
+                                            </LinkedinShareButton>
+
                                         </Box>
 
 
+
+                                        <div className="display-2 pb-3 pt-3 text-center font-weight-bold" style={{ marginTop: '30px', display: 'center', overflowWrap: 'break-word', justifyContent: 'center', paddingLeft: '5px', paddingRight: '5px' }}>
+
+
+                                            {/* <h5 style={{ fontSize: '40px', color: '#404142' }} className="display-2 pb-3 pt-3 text-center font-weight-bold">{blog.title}</h5> */}
+                                            <Typography component='div'>
+                                                <Box sx={{ fontWeight: 1000, m: 1, fontSize: '30px', color: '#535353' }}>{blog.title}</Box>
+
+                                                {/* 
+                                        sx={{
+ 
+           minHeight:{ xs: 233, md: 450,lg:400},
+           minWidth:{ xs: 350, md: 450,lg:700},
+          maxHeight: { xs: 233, md: 450,lg:400 },
+          maxWidth: { xs: 350, md: 450,lg:700},
+        }} */}
+
+                                            </Typography>
+
+
+
+                                        </div>
+
+                                        <div className="row" style={{ marginTop: '30px', display: 'center', justifyContent: 'center', paddingLeft: '5px', paddingRight: '5px' }}>
+
+                                            {/* 
+                                        <ReactRoundedImage
+                                            image={`${API}/blog/photo/${blog.slug}`}
+                                            roundedColor="#66A5CC"
+                                            imageWidth="100%"
+                                            imageHeight="300"
+                                            roundedSize="0"
+                                            borderRadius="0"
+                                        /> */}
+
+                                            <Box
+                                                component="img"
+                                                sx={{
+                                                    //   height: 233,
+                                                    //   width: 350,
+                                                    minHeight: { xs: 233, md: 450, lg: 200 },
+                                                    minWidth: { xs: 350, md: 450, lg: 700 },
+                                                    maxHeight: { xs: 233, md: 450, lg: 400 },
+                                                    maxWidth: { xs: 350, md: 450, lg: 700 },
+                                                }}
+                                                alt="image"
+                                                src={`${API}/blog/photo/${blog.slug}`}
+                                            />
+
+                                        </div>
+
+
+                                        <div style={{ marginTop: '30px', display: 'center', justifyContent: 'center' }}>
+
+                                            <Typography padding={1}>
+                                                Written by{' '}
+                                                <Link href={`/profile/${blog.postedBy.username}`}>
+                                                    <a>{blog.postedBy.username}</a>
+                                                </Link>{' '}
+                                                | Published {moment(blog.updatedAt).fromNow()}
+
+                                            </Typography>
+                                            <Box
+                                                sx={{
+                                                    display: 'flex',
+                                                    //justifyContent: 'center',
+                                                    backgroundColor: 'tranparent',
+                                                    flexWrap: 'wrap',
+                                                    listStyle: 'none',
+                                                    p: 0.5,
+                                                    m: 0,
+                                                }}
+                                                component="ul"
+                                            >
+                                                {showBlogCategories(blog)}
+                                                {showBlogTags(blog)}
+                                            </Box>
+
+
+                                        </div>
+
+
+
+                                        <br />
+                                        <br />
+
                                     </div>
-
-
-
-                                    <br />
-                                    <br />
-
-                                </div>
-                            </section>
-                        </div>
-                        {/* 
+                                </section>
+                            </div>
+                            {/* 
                         <div className="container">
                             <section>
                                 <div className="col-md-12 lead"
@@ -371,29 +373,36 @@ const SingleBlog = ({ blog, query }) => {
                             </section>
                         </div> */}
 
-                        <div className="container">
-                            <section>
-                                <div className="col-md-12 lead" >
-                                    <Typography style={{ color: '#595855',wordBreak: 'break-word' }}  >
-                                    {/* style={{ color: '#595855' }}  */}
+                            <div className="container">
+                                <section>
 
-                                    {renderHTML(blog.body)}
-                                        
 
-                                    </Typography>
+                                    {blog.body.substring(2, 6) === 'time' ? (<>
+                                        <MediumEditor value={JSON.parse(blog.body)} /> </>) : (<>    <div className="col-md-12 lead" >   <Typography style={{ color: '#595855', wordBreak: 'break-word' }}  >
+                                            {/* style={{ color: '#595855' }}  */}
 
-                                </div>
-                            </section>
-                        </div>
+                                            {renderHTML(blog.body)}
 
-                        <div className="container">
-                            <h4 className="text-center pt-5 pb-5 h2">RELATED BLOGS</h4>
-                            <div className="row">{showRelatedBlog()}</div>
-                        </div>
 
-                        <div className="container pt-5 pb-5">{showComments()}</div>
-                    </article>
-                </main>
+                                        </Typography></div>    </>)}
+
+
+
+
+
+
+
+                                </section>
+                            </div>
+
+                            <div className="container">
+                                <h4 className="text-center pt-5 pb-5 h2">RELATED BLOGS</h4>
+                                <div className="row">{showRelatedBlog()}</div>
+                            </div>
+
+                            <div className="container pt-5 pb-5">{showComments()}</div>
+                        </article>
+                    </main>
 
                 </Paper>
 

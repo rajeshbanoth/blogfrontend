@@ -34,6 +34,8 @@ class MyDocument extends Document {
             href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
           />
           <link href="https://fonts.googleapis.com/css2?family=Chilanka&display=swap" rel="stylesheet"></link>
+          <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"></link>
+          <link rel="stylesheet" type="text/css" href="https://unpkg.com/medium-draft/dist/medium-draft.css"></link>
 
           
           <link rel="stylesheet" href="/static/css/styles.css" />

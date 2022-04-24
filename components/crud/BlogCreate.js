@@ -1,5 +1,5 @@
 import SearchIcon from '@mui/icons-material/Search';
-import { Box, Paper, TextField } from '@mui/material';
+import { Box, Button, Paper, TextField } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import InputBase from '@mui/material/InputBase';
 import List from '@mui/material/List';
@@ -17,15 +17,21 @@ import { getCookie } from '../../actions/auth';
 import { createBlog } from '../../actions/blog';
 import { getCategories } from '../../actions/category';
 import { getTags } from '../../actions/tag';
+import Toggle from '../Toggle'
+//import Parser from 'editorjs-viewer'
 import { QuillFormats, QuillModules } from '../../helpers/quill';
+import DeleteIcon from '@mui/icons-material/Delete';
+
+
 import '../../node_modules/react-quill/dist/quill.snow.css';
+import { create} from '../../actions/tag';
+
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
+
 
 const Editor= dynamic(() => import('../../helpers/Editor'), { ssr: false });
 
-
-
-
+const MediumEditor= dynamic(() => import('../../Editor/MediumEditor'), { ssr: false });
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -84,6 +90,7 @@ const CreateBlog = ({ router }) => {
     };
 
     const [categories, setCategories] = useState([]);
+    const [editoroptions,setEdiorOption]=useState('Editor')
     const [tags, setTags] = useState([]);
 
     const [dummycat, setdummycat] = useState([])
@@ -91,6 +98,11 @@ const CreateBlog = ({ router }) => {
 
     const [checked, setChecked] = useState([]); // categories
     const [checkedTag, setCheckedTag] = useState([]); // tags
+    const [createtag,setcreatetag]=useState(false)
+    const [searchtag,setsearchtag]=useState('')
+    const [name,setname]=useState('')
+    const [editorState,setEditor]=useState(true)
+    const [editorObject,seteditorObject]=useState('')
 
     const [body, setBody] = useState(blogFromLS());
     const [values, setValues] = useState({
@@ -101,13 +113,15 @@ const CreateBlog = ({ router }) => {
         title: '',
         hidePublishButton: false,
         loading: false,
+        removed: false,
+        reload: false
 
 
     });
 
     const [imagename, setimagename] = useState('')
 
-    const { error, sizeError, success, formData, title, hidePublishButton, loading } = values;
+    const { error, sizeError, success, formData, title, hidePublishButton, loading ,reload} = values;
     const token = getCookie('token');
 
     useEffect(() => {
@@ -115,6 +129,9 @@ const CreateBlog = ({ router }) => {
         initCategories();
         initTags();
     }, [router]);
+    useEffect(() => {
+        initTags();
+    }, [reload]);
 
     const initCategories = () => {
         setValues({ ...values, formData: new FormData() });
@@ -162,10 +179,6 @@ const CreateBlog = ({ router }) => {
     };
 
     const handleChange = name => e => {
-
-
-
-
         name === 'photo' && setimagename(e.target.files[0].name)
         const value = name === 'photo' ? e.target.files[0] : e.target.value;
         formData.set(name, value);
@@ -183,14 +196,33 @@ const CreateBlog = ({ router }) => {
 
    const  handlebodydata =(e)=>{
     setBody(e);
-
     console.log(e)
     formData.set('body', e);
     if (typeof window !== 'undefined') {
         localStorage.setItem('blog', JSON.stringify(e));
     }
-
    }
+// edior js handlebodydata
+   const handlejsondata=(jsondata,htmldata)=>{
+  
+   const string = JSON.stringify(jsondata)
+   console.log(string)
+    formData.set('body', string);
+    formData.set('html', htmldata);
+    if (typeof window !== 'undefined') {
+        localStorage.setItem('jsonblog', string);
+    }
+    
+}
+
+const handlequilleditor =()=>{
+     setEditor(true)
+     formData.delete('body');
+}
+const handleeditorjs =()=>{
+    setEditor(false)
+    formData.delete('body');
+}
 
     const handleToggle = c => () => {
         setValues({ ...values, error: '' });
@@ -223,6 +255,11 @@ const CreateBlog = ({ router }) => {
         setCheckedTag(all);
         formData.set('tags', all);
     };
+    const handletagurl =()=>{
+       
+        setCheckedTag([...checkedTag, searchtag]);
+
+    }
 
     const showCategories = () => {
         return (
@@ -262,7 +299,6 @@ const CreateBlog = ({ router }) => {
                         <ListItemIcon>
                             <Checkbox
                                 edge="start"
-
                                 tabIndex={-1}
                                 disableRipple
                                 inputProps={{ 'aria-labelledby': i }}
@@ -275,6 +311,22 @@ const CreateBlog = ({ router }) => {
             ))
         );
     };
+
+ 
+
+const handleselectedtag =(e)=>{
+    e.preventDefault();
+    // console.log('create category', name);
+    const token = getCookie('token');
+    create({ name }, token).then(data => {
+        if (data.error) {
+            setValues({ ...values, error: data.error, success: false });
+        } else {
+            setValues({ ...values, error: false, success: false, name: '', removed: false, reload: !reload });
+        }
+    });
+}
+
 
     const showError = () => (
         <div className="alert alert-danger" style={{ display: error ? '' : 'none' }}>
@@ -294,6 +346,8 @@ const CreateBlog = ({ router }) => {
         </div>
     );
 
+
+
     const createBlogForm = () => {
         return (
             <form onSubmit={publishBlog}>
@@ -302,6 +356,11 @@ const CreateBlog = ({ router }) => {
                 <Paper style={{ borderRadius: '10px' }}>
 
                     <div style={{ padding: '20px' }}>
+                    <div className="form-group" >
+                            <Box>
+                                <Toggle  handlequill={handlequilleditor}  editorjs={handleeditorjs}/>
+                            </Box>
+                        </div>
 
                         <div className="form-group" >
                             <Box>
@@ -321,7 +380,10 @@ const CreateBlog = ({ router }) => {
                                 onChange={handleBody}
 
                             /> */}
-                            <Editor handlechange={handlebodydata} value={body}/>
+{editorState ? (
+                            <Editor handlechange={handlebodydata} value={body} />): ( <MediumEditor editorjson={handlejsondata}/> )}
+
+                           
                         </div>
 
                         <div>
@@ -365,6 +427,7 @@ const CreateBlog = ({ router }) => {
     }
 
     const handlechangefiltertag = (e) => {
+        setname(e.target.value)
         if (e.target.value != '' || e.target.value.length === 0 || e.target.value === " ") {
 
             let updatedblogs = dummytag
@@ -374,6 +437,13 @@ const CreateBlog = ({ router }) => {
                     e.target.value.toLowerCase()
                 ) !== -1;
             });
+            if(updatedblogs.length===0)
+            {
+                setcreatetag(true)
+            }
+            else{
+                setcreatetag(false)
+            }
 
             setTags(updatedblogs)
             // setfilter(e.target.value)
@@ -460,6 +530,10 @@ const CreateBlog = ({ router }) => {
 
                         <Paper style={{ borderRadius: '10px' }}>
 
+                        {/* {showSelectedtags()} */}
+
+                       
+
 
                             <Typography variant='h4' style={{ padding: '10px' }}>Tags</Typography>
                             <Search>
@@ -473,6 +547,24 @@ const CreateBlog = ({ router }) => {
 
                                 />
                             </Search>
+                            {createtag && 
+                            <>
+                            <div style={{paddingLeft:'38.4%',paddingRight:'20%',paddingTop:'10px'}}>
+<Button
+
+sx={{ mt: 3, mb: 2,color:'#ffffff',backgroundColor:'#121212',
+"&:hover": {
+  backgroundColor:'#121212',
+}
+
+
+}}
+
+variant='contained' onClick={handleselectedtag}>Create Tag</Button>
+
+</div>
+  </>}
+                           
                             <hr />
                             <ul style={{ maxHeight: '200px', overflowY: 'scroll' }}>{showTags()}</ul>
 
