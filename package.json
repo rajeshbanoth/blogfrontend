@@ -41,11 +41,13 @@
     "axios": "^0.26.1",
     "dotenv": "^16.0.0",
     "editorjs-blocks-react-renderer": "^1.2.4",
+    "editorjs-button": "^1.0.4",
     "editorjs-code-tool": "^1.0.4",
     "editorjs-github-gist-plugin": "^1.1.0",
     "editorjs-html": "^3.4.2",
     "editorjs-parser": "^1.5.3",
     "editorjs-react-renderer": "^3.1.1",
+    "editorjs-text-color-plugin": "^1.12.1",
     "editorjs-viewer": "^0.0.1",
     "editorjs-youtube-embed": "^1.0.3",
     "globby": "^13.1.1",
@@ -101,8 +103,10 @@
     "xhr2": "^0.2.1"
   },
   "devDependencies": {
+    "@editorjs/attaches": "^1.2.1",
     "@svgr/webpack": "^6.2.1",
     "editorjs-change-case": "^0.0.3",
-    "editorjs-drag-drop": "^1.0.3"
+    "editorjs-drag-drop": "^1.0.3",
+    "editorjs-tooltip": "^1.1.3"
   }
 }

@@ -336,7 +336,7 @@ const BlogUpdate = ({ router }) => {
                         onChange={handleBody}
                     /> */}
 
-{body.substring(2,6)==="time" ? (<>  <MediumEditor editorjson={handlejsondata} value={jsondata}/> </>):(<><Editor handlechange={handleBody} value={body}/> </>)}
+ {body.substring(2,6)==="time" ? (<>  <MediumEditor editorjson={handlejsondata} value={jsondata}/> </>):(<><Editor handlechange={handleBody} value={body}/> </>)}
 
 
 

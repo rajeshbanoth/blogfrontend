@@ -165,6 +165,9 @@ const CreateBlog = ({ router }) => {
                     error: '',
                     success: `A new blog titled "${data.title}" is created`
                 });
+
+                localStorage.clear('jsonblog')
+
                 setBody('');
                 setCategories([]);
                 setTags([]);
@@ -375,7 +378,7 @@ const CreateBlog = ({ router }) => {
 
                             /> */}
                             {editorState ? (
-                                <Editor handlechange={handlebodydata} value={body} />) : (<MediumEditor editorjson={handlejsondata} />)}
+                                <Editor handlechange={handlebodydata} value={body} />) : (<MediumEditor editorjson={handlejsondata} value={  localStorage.getItem('jsonblog')!=="undefined" ? JSON.parse(localStorage.getItem('jsonblog')) : {} } />)}
 
 
                         </div>

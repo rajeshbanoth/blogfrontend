@@ -22,6 +22,11 @@ const MediumEditor=(props)=> {
 
    props.editorjson(savedData,Parser(savedData.blocks))
 
+  //  const string = JSON.stringify(savedData)
+  //  if (typeof window !== 'undefined') {
+  //      localStorage.setItem('jsonblog', string);
+  //  }
+
   }, [])
 
   const handleReady = () => {

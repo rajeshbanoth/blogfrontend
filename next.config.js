@@ -9,8 +9,8 @@ module.exports = {
     },
     publicRuntimeConfig: {
    API_PRODUCTION:process.env.API_PRODUCTION,
-  //API_PRODUCTION:'http://localhost:8000/api',
-    //API_PRODUCTION:'https://ec1zh3.deta.dev/api',
+ // API_PRODUCTION:'http://localhost:8000/api',
+
       PRODUCTION:process.env.PRODUCTION,
       DISQUS_SHORTNAME:process.env.DISQUS_SHORTNAME,
       GOOGLE_CLIENT_ID:process.env.GOOGLE_CLIENT_ID,
