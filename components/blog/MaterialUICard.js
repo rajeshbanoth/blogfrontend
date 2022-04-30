@@ -50,13 +50,6 @@ const Card = ({ blog }) => {
             <div className="row">
                 <div className="col-md-4">
                     <section>
-                        {/* <img
-                            className="img img-fluid"
-                            style={{ maxHeight: 'auto', width: '100%' }}
-                            src={`${API}/blog/photo/${blog.slug}`}
-                            alt={blog.title}
-                        /> */}
-
 
 
 <ReactRoundedImage

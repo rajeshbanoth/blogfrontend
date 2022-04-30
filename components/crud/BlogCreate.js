@@ -166,7 +166,7 @@ const CreateBlog = ({ router }) => {
                     success: `A new blog titled "${data.title}" is created`
                 });
 
-                localStorage.clear('jsonblog')
+                localStorage.removeItem('jsonblog')
 
                 setBody('');
                 setCategories([]);
@@ -368,15 +368,6 @@ const CreateBlog = ({ router }) => {
 
 
                         <div className="form-group">
-
-                            {/* <ReactQuill
-                                modules={QuillModules}
-                                formats={QuillFormats}
-                                value={body}
-                                placeholder="Write something amazing..."
-                                onChange={handleBody}
-
-                            /> */}
                             {editorState ? (
                                 <Editor handlechange={handlebodydata} value={body} />) : (<MediumEditor editorjson={handlejsondata} value={  localStorage.getItem('jsonblog')!=="undefined" ? JSON.parse(localStorage.getItem('jsonblog')) : {} } />)}
 

@@ -56,7 +56,7 @@ const Img = styled('img')({
 
 const Card = ({ blog }) => {
 
-    // console.log(blog.slug,blog.title,"slug")
+    
 
     const showBlogCategories = blog =>
         blog.categories.map((c, i) => (
@@ -91,14 +91,14 @@ const Card = ({ blog }) => {
 
  
 
-     //height: 48,
-    // padding: '0 30px',
+     
+    
      "&:hover": {
          boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
        } }}>
 
         <CardMedia
-     // sx={{paddingTop:'5px'}}
+     
  
    
         sx={{ maxWidth:200, display: { xs: 'none', sm: 'block' } }}
@@ -110,7 +110,7 @@ const Card = ({ blog }) => {
           image={`${API}/blog/photo/${blog.slug}`}
           roundedColor="#66A5CC"
           imageWidth="200"
-         // imageHeight="120"
+         
           roundedSize="0"
           borderRadius="0"
         />

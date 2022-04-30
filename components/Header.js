@@ -241,39 +241,39 @@ const Header = () => {
   return (
 
     <ThemeProvider theme={darkTheme}>
-    <React.Fragment>
+      <React.Fragment>
 
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="fixed" >
-          <Toolbar style={{padding:11}}>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              sx={{ mr: 2 }}
-              href='/'
-            >
-              {/* <MenuIcon /> */}
-
-
-         
-        <img  alt='gloom' src='/static/images/favicon32.png'/>
-    
-            </IconButton>
-
-            <Link
-            variant="h6"
-             sx={{ display: { xs: 'none', sm: 'block' } }}
-             href='/' underline="none">
-            { APP_NAME }
-</Link>
-
-          
+        <Box sx={{ flexGrow: 1 }}>
+          <AppBar position="fixed" >
+            <Toolbar style={{ padding: 11 }}>
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="open drawer"
+                sx={{ mr: 2 }}
+                href='/'
+              >
+                {/* <MenuIcon /> */}
 
 
-             <SearchField>
-              {/* <SearchIconWrapper>
+
+                <img alt='gloom' src='/static/images/favicon32.png' />
+
+              </IconButton>
+
+              <Link
+                variant="h6"
+                sx={{ display: { xs: 'none', sm: 'block' } }}
+                href='/' underline="none">
+                {APP_NAME}
+              </Link>
+
+
+
+
+              <SearchField>
+                {/* <SearchIconWrapper>
                 <SearchIcon />
               </SearchIconWrapper>
               <StyledInputBase
@@ -281,99 +281,99 @@ const Header = () => {
                 inputProps={{ 'aria-label': 'search' }}
               /> */}
 
-<SearchBar/>
-            </SearchField> 
-            <Box sx={{ flexGrow: 1 }} />
-            <Box sx={{
-              display: { xs: 'none', md: 'flex' },
-              flexWrap: 'wrap',
-              justifyContent: 'center',
-              typography: 'body1',
-              '& > :not(style) + :not(style)': {
-                ml: 2,
-              },
-            }}
+                <SearchBar />
+              </SearchField>
+              <Box sx={{ flexGrow: 1 }} />
+              <Box sx={{
+                display: { xs: 'none', md: 'flex' },
+                flexWrap: 'wrap',
+                justifyContent: 'center',
+                typography: 'body1',
+                '& > :not(style) + :not(style)': {
+                  ml: 2,
+                },
+              }}
 
 
 
-            >
+              >
 
 
-              <Button  href="/blogs"> Blogs</Button>
+                <Button href="/blogs"> Blogs</Button>
 
-              <Button href="/contact">Contact us</Button>
+                <Button href="/contact">Contact us</Button>
 
-              {!isAuth() && (
-                <React.Fragment>
-                  <Button href="/signin">
-                    Login
-                  </Button>
-                 <Button href="/signup" >
-                   Register
+                {!isAuth() && (
+                  <React.Fragment>
+                    <Button href="/signin">
+                      Login
+                    </Button>
+                    <Button href="/signup" >
+                      Register
+                    </Button >
+                  </React.Fragment>
+                )}
+
+                {isAuth() && isAuth().role === 0 && (
+
+                  <Button href="/user">
+                    {`${isAuth().name}'s Dashboard`}
                   </Button >
-                </React.Fragment>
-              )}
 
-              {isAuth() && isAuth().role === 0 && (
+                )}
 
-                <Button href="/user">
-                  {`${isAuth().name}'s Dashboard`}
-                </Button >
+                {isAuth() && isAuth().role === 1 && (
 
-              )}
+                  <Button onClick={() => {
+                    Router.replace(`/admin`)
 
-              {isAuth() && isAuth().role === 1 && (
+                  }}>
+                    {`${isAuth().name}'s Dashboard`}
+                  </Button >
 
-                <Button  onClick={()=>{
-                  Router.replace(`/admin`)
+                )}
 
-                }}>
-                  {`${isAuth().name}'s Dashboard`}
-                </Button >
+                {isAuth() && (
 
-              )}
+                  <Button style={{ cursor: 'pointer' }} onClick={() => signout(() => Router.replace(`/signin`))}>
+                    Signout
+                  </Button >
 
-              {isAuth() && (
+                )}
 
-                <Button style={{ cursor: 'pointer' }} onClick={() => signout(() => Router.replace(`/signin`))}>
-                  Signout
-                </Button >
+                {/* <Button href="/user/crud/blog" > */}
 
-              )}
 
-              {/* <Button href="/user/crud/blog" > */}
-
-                
-              <Button  onClick={()=>{
+                <Button onClick={() => {
                   Router.replace(`/user/crud/blog`)
 
                 }}>
 
-                Write a blog
+                  Write a blog
 
-              </Button >
+                </Button >
 
-              <Button href='/aboutus'> About Us</Button>
-            </Box>
-            <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-              <IconButton
-                size="large"
-                aria-label="show more"
-                aria-controls={mobileMenuId}
-                aria-haspopup="true"
-                onClick={handleMobileMenuOpen}
-                color="inherit"
-              >
-                <MenuIcon  />
-              </IconButton>
-            </Box>
-          </Toolbar>
-        </AppBar>
-        {renderMobileMenu}
-        {renderMenu}
-      </Box>
+                <Button href='/aboutus'> About Us</Button>
+              </Box>
+              <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+                <IconButton
+                  size="large"
+                  aria-label="show more"
+                  aria-controls={mobileMenuId}
+                  aria-haspopup="true"
+                  onClick={handleMobileMenuOpen}
+                  color="inherit"
+                >
+                  <MenuIcon />
+                </IconButton>
+              </Box>
+            </Toolbar>
+          </AppBar>
+          {renderMobileMenu}
+          {renderMenu}
+        </Box>
 
-    </React.Fragment>
+      </React.Fragment>
     </ThemeProvider>
   );
 };
