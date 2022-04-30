@@ -17,7 +17,6 @@ import  YoutubeEmbed from 'editorjs-youtube-embed'
 import Gist from 'editorjs-github-gist-plugin';
 import CodeTool from 'editorjs-code-tool'
 import ChangeCase from 'editorjs-change-case';
-import CodeMirror from '../dist/bundle'
 import NestedList from '@editorjs/nested-list';
 const CodeBox = require('@bomdi/codebox');
 const ColorPlugin = require('editorjs-text-color-plugin');
