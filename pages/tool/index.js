@@ -9,6 +9,7 @@ import Tablecomponent from '../../components/Tablecomponent';
 import Admin from '../../components/auth/Admin';
 import Layout from '../../components/Layout';
 
+import Header from '../../components/Header';
 
 const BASE_URL = DOMAIN;
 
@@ -140,6 +141,7 @@ const Blogs = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, rout
     <Layout >
     <Admin>
     <>
+    <Header />
       <Button onClick={handledownload}> Download All URl</Button>
 
       <Button onClick={handlecategoryurl}> Download only categoryurl</Button>

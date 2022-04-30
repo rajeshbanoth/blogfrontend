@@ -8,7 +8,7 @@ module.exports = {
       secondSecret:process.env.SECOND_SECRET, // Pass through env variables
     },
     publicRuntimeConfig: {
-   API_PRODUCTION:process.env.API_PRODUCTION,
+   API_PRODUCTION:"https://nextblogserver.herokuapp.com/api",
  // API_PRODUCTION:'http://localhost:8000/api',
 
       PRODUCTION:process.env.PRODUCTION,
