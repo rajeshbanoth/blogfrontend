@@ -6,6 +6,8 @@ import { listBlogsWithCategoriesAndTags } from '../../actions/blog';
 import { DOMAIN } from '../../config';
 
 import Tablecomponent from '../../components/Tablecomponent';
+import Admin from '../../components/auth/Admin';
+import Layout from '../../components/Layout';
 
 
 const BASE_URL = DOMAIN;
@@ -132,6 +134,11 @@ const Blogs = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, rout
 
 
   return (
+
+
+    
+    <Layout >
+    <Admin>
     <>
       <Button onClick={handledownload}> Download All URl</Button>
 
@@ -168,6 +175,9 @@ const Blogs = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, rout
 
 
     </>
+
+    </Admin>
+    </Layout>
   );
 };
 
