@@ -49,7 +49,7 @@ class MyDocument extends Document {
           <script dangerouslySetInnerHTML={this.setGoogleTags()} />
           
         </Head>
-        <body  >
+        <body style={{backgroundColor:'#ffffff'}} >
           <Main />
           <NextScript />
         </body>

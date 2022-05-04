@@ -1,5 +1,5 @@
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
-import { Card as Card1 } from '@mui/material';
+import { Avatar, Card as Card1, Divider, Fab, ListItem, ListItemAvatar, ListItemText } from '@mui/material';
 import Button from '@mui/material/Button';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -14,6 +14,8 @@ import * as React from 'react';
 import renderHTML from 'react-render-html';
 import ReactRoundedImage from "react-rounded-image";
 import { API } from '../../config';
+import EditIcon from '@mui/icons-material/Edit';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 
 const darkTheme = createTheme({
@@ -81,60 +83,62 @@ const Card = ({ blog }) => {
 
 <Grid item xs={12} md={6}>
 
-        <Card1 sx={{ display: 'flex',
+    <Card1 sx={{ display: 'flex',
      border: 1,
      borderRadius: 4,
-     borderColor: '#000000',
+    //  borderColor: '#000000',
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
      color: 'white',
-     backgroundColor: 'transparent',
+     height:'180px',
+    //  backgroundColor: 'transparent',
 
- 
-
-     
-    
+   
      "&:hover": {
          boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
        } }}>
 
-        <CardMedia
+        <CardMedia  
+        sx={{  display: {  sm: 'block' } ,paddingTop:'18px',paddingLeft:'10px',paddingRight:'8px'}}
      
- 
-   
-        sx={{ maxWidth:200, display: { xs: 'none', sm: 'block' } }}
-     
-        alt="green iguana"
+        alt="image"
       >
 
 <ReactRoundedImage
           image={`${API}/blog/photo/${blog.slug}`}
           roundedColor="#66A5CC"
-          imageWidth="200"
+          imageWidth="130"
+          imageHeight='130'
          
           roundedSize="0"
-          borderRadius="0"
+          borderRadius="5"
         />
 
           </CardMedia>
 
        <CardContent sx={{ flex: 1 }}>
-        <Typography gutterBottom style={{color:'#34568B',fontSize:'18px'}}  component="div">
+        <Typography gutterBottom style={{color:'#252626',fontSize:'16px'}}  component="div">
         {blog.title}
         </Typography>
-        <Typography style={{color:'#595855',fontSize:'10px'}}   >
-              Written by{' '}
+        <Typography sx={{color:'#595855',fontSize:'12px',display: { xs: 'none', sm: 'block' }}}     >
+              {<EditIcon  style={{color:'#0F9D58'}} fontSize='small'/>}{' '}
                     <Link href={`/profile/${blog.postedBy.username}`}>
                         {blog.postedBy.username}
                     </Link>{' '}
-                    | Published {moment(blog.updatedAt).fromNow()}
+                    | {<AccessTimeIcon   style={{color:'#DB4437'}} fontSize='small' />} {moment(blog.updatedAt).fromNow()}
               </Typography>
-        <Typography color="text.secondary" style={{textAlign:'left',fontSize:'13px'}}>
+        <Typography color="text.secondary"    sx={{textAlign:'left',fontSize:'12px',height:'100px',display: { xs: 'none', sm: 'block' }}}>
         {renderHTML(blog.excerpt)}
         </Typography>
 
 
         <ThemeProvider theme={darkTheme}>
-        <Button  color='primary' variant='contained'   href={`/blogs/${blog.slug}`}>Read More  <ArrowRightAltIcon /> </Button>
+        <Button sx={{
+           position: 'absolute',
+           bottom: 16,
+           right: 16,
+           backgroundColor:'#e6e7ed',
+           color:'#4285F4'
+        }}     href={`/blogs/${blog.slug}`}>Read More  <ArrowRightAltIcon /> </Button>
             </ThemeProvider>
        
       </CardContent>
@@ -145,7 +149,11 @@ const Card = ({ blog }) => {
 
       </CardActions>
     </Card1>
- 
+
+
+
+
+
     </Grid>
 
 

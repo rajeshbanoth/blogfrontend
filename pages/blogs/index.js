@@ -70,13 +70,14 @@ const Blogs = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, rout
     const showAllBlogs = () => {
         return blogs.map((blog, i) => {
             // ()
+            console.log(blog)
             return (
                 // <article key={i}>
                 //     <Card blog={blog} />
                 // </article>
 
 
-
+   
 
 
                 <div key={i} className="col-md-6" style={{ padding: '10px' }}>
@@ -139,7 +140,7 @@ const Blogs = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, rout
             //     <Card blog={blog} />
             // </article>
 
-            <div key={i} className="col-md-4" style={{ padding: '10px' }}>
+            <div key={i} className="col-md-6" style={{ padding: '10px' }}>
                 <div >
 
                     <Card blog={blog} />
