@@ -34,7 +34,7 @@ color="inherit"
             key={i}
             variant="body2"
             href={`/categories/${c.slug}`}
-            sx={{ p: 1, flexShrink: 0, fontSize:'20px'}}
+            sx={{ p: 1, flexShrink: 0, fontSize:'20px',fontFamily:'monospace'}}
           >
             {c.name}
           </Link>

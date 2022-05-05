@@ -122,7 +122,7 @@ color="inherit"
             key={i}
             variant="body2"
             href={`/categories/${c.slug}`}
-            sx={{ p: 1, flexShrink: 0, fontSize:'20px'}}
+            sx={{ p: 1, flexShrink: 0, fontSize:'20px',fontFamily: 'Monospace'}}
           >
             {c.name}
           </Link>
@@ -207,7 +207,7 @@ color="inherit"
                     <MDBContainer>
       <MDBRow>
 
-      <MDBCol><Typography component="div">
+      <MDBCol md="6"><Typography component="div">
 
 <Box sx={{ fontFamily: 'Monospace', fontSize: 'h6.fontSize', m: 1 }}>
 Latest Articles
@@ -217,44 +217,11 @@ Latest Articles
 
 
     {showlatestblogs()}</MDBCol>
-        <MDBCol><Bloglisthome  blogs={blogs} categories={category}/></MDBCol>
+        <MDBCol md="6"><Bloglisthome  blogs={blogs} categories={category}/></MDBCol>
 
       
       </MDBRow>
     </MDBContainer>
-
-
-
-
-
-
-
-
-
-
-
-
-                 
-               
-
- 
-                        
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                   
 
                 </article>
 

@@ -72,7 +72,7 @@ const Card = ({ blog }) => {
     //  borderColor: '#000000',
     boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)",
      color: 'white',
-     height:'180px',
+     height:'150px',
     //  backgroundColor: 'transparent',
 
    
@@ -81,7 +81,7 @@ const Card = ({ blog }) => {
        } }}>
 
         <CardMedia  
-        sx={{  display: {  sm: 'block' } ,paddingTop:'18px',paddingLeft:'10px',paddingRight:'8px'}}
+        sx={{  display: {  sm: 'block' } ,paddingTop:'18px',paddingLeft:'10px',paddingRight:'4px'}}
      
         alt="image"
       >
@@ -89,8 +89,8 @@ const Card = ({ blog }) => {
 <ReactRoundedImage
           image={`${API}/blog/photo/${blog.slug}`}
           roundedColor="#66A5CC"
-          imageWidth="120"
-          imageHeight='120'
+          imageWidth="100"
+          imageHeight='100'
          
           roundedSize="0"
           borderRadius="5"
@@ -99,20 +99,20 @@ const Card = ({ blog }) => {
           </CardMedia>
 
        <CardContent sx={{ flex: 1 }}>
-        <Typography gutterBottom style={{color:'#252626',fontSize:'16px'}}  component="div">
+        <Link underline="none" href={`/blogs/${blog.slug}`} gutterBottom style={{color:'#252626',fontSize:'16px'}} >
         {blog.title}
-        </Typography>
+        </Link>
 
 
-        <ThemeProvider theme={darkTheme}>
+        {/* <ThemeProvider theme={darkTheme}>
         <Button sx={{
-        //    position: 'absolute',
-        //    bottom: 16,
-        //    right: 16,
+           position: 'absolute',
+           bottom: 9,
+           right: 9,
         //    backgroundColor:'#e6e7ed',
            color:'#4285F4'
         }}     href={`/blogs/${blog.slug}`}>Read More  <ArrowRightAltIcon /> </Button>
-            </ThemeProvider>
+            </ThemeProvider> */}
        
       </CardContent>
 

@@ -33,11 +33,11 @@ const SearchField = styled('div')(({ theme }) => ({
   '&:hover': {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
-  marginRight: theme.spacing(2),
+  marginRight: theme.spacing(1),
   marginLeft: 0,
-  width: '100%',
+  width: 'auto',
   [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
+    marginLeft: theme.spacing(1),
     width: 'auto',
   },
 }));
@@ -272,7 +272,6 @@ const Header = () => {
           
 
 
-             <SearchField>
               {/* <SearchIconWrapper>
                 <SearchIcon />
               </SearchIconWrapper>
@@ -280,9 +279,12 @@ const Header = () => {
                 placeholder="Search…"
                 inputProps={{ 'aria-label': 'search' }}
               /> */}
+                <Box sx={{ flexGrow: 1 }} />
 
 <SearchBar/>
-            </SearchField> 
+         
+
+         
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{
               display: { xs: 'none', md: 'flex' },

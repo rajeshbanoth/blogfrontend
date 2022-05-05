@@ -11,12 +11,16 @@ import renderHTML from 'react-render-html';
 import ReactRoundedImage from "react-rounded-image";
 import { Container } from 'reactstrap';
 import { listBlogsWithCategoriesAndTags, listRelated, singleBlog } from '../../actions/blog';
-import SmallCard from '../../components/blog/SmallCard';
+import SmallCard from '../../components/blog/SmallCardMui';
 import DisqusThread from '../../components/DisqusThread';
 //import Link from 'next/link';
 import Layout from '../../components/Layout';
 import { API, APP_NAME, DOMAIN, FB_APP_ID } from '../../config';
+import EditIcon from '@mui/icons-material/Edit';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import Divider from '@mui/material/Divider';
 const MediumEditor = dynamic(() => import('../../Editor/Readdata'), { ssr: false });
+
 
 
 import {
@@ -124,7 +128,7 @@ const SingleBlog = ({ blog, query }) => {
                     key={i}
                     variant="body2"
                     href={`/categories/${c.slug}`}
-                    sx={{ p: 1, flexShrink: 0, fontSize: '20px' }}
+                    sx={{ p: 1, flexShrink: 0, fontSize: '20px' ,fontFamily: 'Monospace' }}
                 >
                     {c.name}
                 </Link>
@@ -265,11 +269,44 @@ const SingleBlog = ({ blog, query }) => {
                                         <div className="display-2 pb-3 pt-3 text-center font-weight-bold" style={{ marginTop: '30px', display: 'center', overflowWrap: 'break-word', justifyContent: 'center', paddingLeft: '5px', paddingRight: '5px' }}>
 
 
-                                            {/* <h5 style={{ fontSize: '40px', color: '#404142' }} className="display-2 pb-3 pt-3 text-center font-weight-bold">{blog.title}</h5> */}
+                                           
                                             <Typography component='div'>
-                                                <Box sx={{ fontWeight: 1000, m: 1, fontSize: '30px', color: '#535353' }}>{blog.title}</Box>
+                                                <Box sx={{ fontWeight: 1000, m: 1, fontSize: '30px', color: '#535353',fontFamily: 'Monospace'  }}>{blog.title}</Box>
 
                                             </Typography>
+
+
+                                            <div>
+
+
+                                                <Typography sx={{ color: '#595855', fontSize: '12px', display: { xs: 'none', sm: 'block' } }}     >
+                                                    {<EditIcon style={{ color: '#0F9D58' }} fontSize='small' />}{' '}
+                                                    <Link href={`/profile/${blog.postedBy.username}`}>
+                                                        {blog.postedBy.username}
+                                                    </Link>{' '}
+                                                    | {<AccessTimeIcon style={{ color: '#DB4437' }} fontSize='small' />} {moment(blog.updatedAt).fromNow()}
+                                                </Typography>
+
+
+
+                                                <Box
+                                                    sx={{
+                                                        display: 'flex',
+                                                        justifyContent: 'center',
+                                                        backgroundColor: 'tranparent',
+                                                        flexWrap: 'wrap',
+                                                        listStyle: 'none',
+                                                        p: 0.5,
+                                                        m: 0,
+                                                    }}
+                                                    component="ul"
+                                                >
+                                                    {showBlogCategories(blog)}
+                                                    {showBlogTags(blog)}
+                                                </Box>
+
+
+                                            </div>
 
 
 
@@ -294,34 +331,7 @@ const SingleBlog = ({ blog, query }) => {
                                         </div>
 
 
-                                        <div style={{ marginTop: '30px', display: 'center', justifyContent: 'center' }}>
 
-                                            <Typography padding={1}>
-                                                Written by{' '}
-                                                <Link href={`/profile/${blog.postedBy.username}`}>
-                                                    <a>{blog.postedBy.username}</a>
-                                                </Link>{' '}
-                                                | Published {moment(blog.updatedAt).fromNow()}
-
-                                            </Typography>
-                                            <Box
-                                                sx={{
-                                                    display: 'flex',
-                                                    //justifyContent: 'center',
-                                                    backgroundColor: 'tranparent',
-                                                    flexWrap: 'wrap',
-                                                    listStyle: 'none',
-                                                    p: 0.5,
-                                                    m: 0,
-                                                }}
-                                                component="ul"
-                                            >
-                                                {showBlogCategories(blog)}
-                                                {showBlogTags(blog)}
-                                            </Box>
-
-
-                                        </div>
 
 
 
@@ -331,35 +341,15 @@ const SingleBlog = ({ blog, query }) => {
                                     </div>
                                 </section>
                             </div>
-                            {/* 
-                        <div className="container">
-                            <section>
-                                <div className="col-md-12 lead"
-                                    // style={{wordBreak:'break-all'}} 
-
-                                    style={{ display: 'flex', flexWrap: 'wrap', wordBreak: 'break-word' }}
-
-                                >
-
-                                    <article>
-                                        <Typography style={{ color: '#595855' }} gutterBottom variant="subtitle1" component="div">
-                                            {renderHTML(blog.body)}
-                                        </Typography>
-
-                                          {renderHTML(blog.body)}
-
-                                    </article>
-
-                                </div>
-                            </section>
-                        </div> */}
+                           
+                       
 
                             <div className="container">
                                 <section>
 
 
                                     {blog.body.substring(2, 6) === 'time' ? (<>
-                                        <MediumEditor value={JSON.parse(blog.body)} /> </>) : (<>    <div className="col-md-12 lead" >   <Typography style={{ color: '#595855', wordBreak: 'break-word' }}  >
+                                        <MediumEditor value={JSON.parse(blog.body)} /> </>) : (<>    <div className="col-md-12 lead" >   <Typography style={{ color: '#595855', wordBreak: 'break-word' , }}  >
                                             {/* style={{ color: '#595855' }}  */}
 
                                             {renderHTML(blog.body)}
@@ -369,8 +359,21 @@ const SingleBlog = ({ blog, query }) => {
                                 </section>
                             </div>
 
+                            <Divider />
+
                             <div className="container">
-                                <h4 className="text-center pt-5 pb-5 h2">RELATED BLOGS</h4>
+
+
+                            <div className="display-2 pb-3 pt-3 text-center font-weight-bold" style={{ marginTop: '30px', display: 'center', overflowWrap: 'break-word', justifyContent: 'center', paddingLeft: '5px', paddingRight: '5px' }}>
+
+
+                                           
+<Typography component='div'>
+    <Box sx={{ fontWeight: 1000, m: 1, fontSize: '30px', color: '#535353',fontFamily: 'Monospace'  }}>Related Blogs</Box>
+
+</Typography>
+</div>
+
                                 <div className="row">{showRelatedBlog()}</div>
                             </div>
 

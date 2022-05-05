@@ -64,7 +64,7 @@ const Card = ({ blog }) => {
     //  borderColor: '#000000',
     boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)",
      color: 'white',
-     height:'180px',
+     height:'150px',
     //  backgroundColor: 'transparent',
 
    
@@ -73,7 +73,7 @@ const Card = ({ blog }) => {
        } }}>
 
         <CardMedia  
-        sx={{  display: {  sm: 'block' } ,paddingTop:'18px',paddingLeft:'10px',paddingRight:'8px'}}
+        sx={{  display: {  sm: 'block' } ,paddingTop:'18px',paddingLeft:'10px',paddingRight:'4px'}}
      
         alt="image"
       >
@@ -81,8 +81,8 @@ const Card = ({ blog }) => {
 <ReactRoundedImage
           image={`${API}/blog/photo/${blog.slug}`}
           roundedColor="#66A5CC"
-          imageWidth="130"
-          imageHeight='130'
+          imageWidth="100"
+          imageHeight='100'
          
           roundedSize="0"
           borderRadius="5"
@@ -91,10 +91,14 @@ const Card = ({ blog }) => {
           </CardMedia>
 
        <CardContent sx={{ flex: 1 }}>
-        <Typography gutterBottom style={{color:'#252626',fontSize:'16px'}}  component="div">
+        {/* <Typography gutterBottom style={{color:'#252626',fontSize:'14px'}}  component="div">
         {blog.title}
-        </Typography>
-        <Typography sx={{color:'#595855',fontSize:'12px',display: { xs: 'none', sm: 'block' }}}     >
+        </Typography> */}
+
+<Link underline="none" href={`/blogs/${blog.slug}`} gutterBottom style={{color:'#252626',fontSize:'16px'}} >
+        {blog.title}
+        </Link>
+        <Typography sx={{color:'#595855',fontSize:'10px',paddingTop:'10px',  display: { xs: 'none', sm: 'block' }}}     >
               {<EditIcon  style={{color:'#0F9D58'}} fontSize='small'/>}{' '}
                     <Link href={`/profile/${blog.postedBy.username}`}>
                         {blog.postedBy.username}
@@ -104,7 +108,7 @@ const Card = ({ blog }) => {
 
 
 
-        <ThemeProvider theme={darkTheme}>
+        {/* <ThemeProvider theme={darkTheme}>
         <Button sx={{
         //    position: 'absolute',
         //    bottom: 10,
@@ -112,7 +116,7 @@ const Card = ({ blog }) => {
         //    backgroundColor:'#e6e7ed',
            color:'#4285F4'
         }}     href={`/blogs/${blog.slug}`}>Read More  <ArrowRightAltIcon /> </Button>
-            </ThemeProvider>
+            </ThemeProvider> */}
        
       </CardContent>
 
