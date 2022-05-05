@@ -279,7 +279,7 @@ const SingleBlog = ({ blog, query }) => {
                                             <div>
 
 
-                                                <Typography sx={{ color: '#595855', fontSize: '12px', display: { xs: 'none', sm: 'block' } }}     >
+                                                <Typography sx={{ color: '#595855', fontSize: '12px' }}     >
                                                     {<EditIcon style={{ color: '#0F9D58' }} fontSize='small' />}{' '}
                                                     <Link href={`/profile/${blog.postedBy.username}`}>
                                                         {blog.postedBy.username}
