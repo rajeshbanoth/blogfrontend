@@ -76,10 +76,6 @@ const Blogs = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, rout
                 //     <Card blog={blog} />
                 // </article>
 
-
-   
-
-
                 <div key={i} className="col-md-6" style={{ padding: '10px' }}>
                     <div >
 
@@ -220,7 +216,7 @@ const Blogs = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, rout
 
 Blogs.getInitialProps = () => {
     let skip = 0;
-    let limit = 10;
+    let limit = 8;
     return listBlogsWithCategoriesAndTags(skip, limit).then(data => {
         if (data.error) {
             // console.log(data.error);

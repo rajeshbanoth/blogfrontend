@@ -41,6 +41,16 @@ export const singleCategory = slug => {
         .catch(err => console.log(err));
 };
 
+export const singleCategoryForHome = slug => {
+    return fetch(`${API}/categoryhomeblogs/${slug}`, {
+        method: 'GET'
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
+
 export const removeCategory = (slug, token) => {
     return fetch(`${API}/category/${slug}`, {
         method: 'DELETE',

@@ -9,7 +9,7 @@ module.exports = {
     },
     publicRuntimeConfig: {
    API_PRODUCTION:process.env.API_PRODUCTION,
- // API_PRODUCTION:'http://localhost:8000/api',
+  //API_PRODUCTION:'http://localhost:8000/api',
 
       PRODUCTION:process.env.PRODUCTION,
       DISQUS_SHORTNAME:process.env.DISQUS_SHORTNAME,

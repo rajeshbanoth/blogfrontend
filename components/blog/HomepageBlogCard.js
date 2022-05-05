@@ -36,16 +36,16 @@ const Img = styled('img')({
 
 
   const MyButton = styled(({ color, ...other }) => <Button {...other} />)({
-    background: (props) =>
-      props.color === 'red'
-        ? 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'
-        : 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+    // background: (props) =>
+    //   props.color === 'red'
+    //     ? 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'
+    //     : 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
     border: 0,
     borderRadius: 3,
-    boxShadow: (props) =>
-      props.color === 'red'
-        ? '0 3px 5px 2px rgba(255, 105, 135, .3)'
-        : '0 3px 5px 2px rgba(33, 203, 243, .3)',
+    // boxShadow: (props) =>
+    //   props.color === 'red'
+    //     ? '0 3px 5px 2px rgba(255, 105, 135, .3)'
+    //     : '0 3px 5px 2px rgba(33, 203, 243, .3)',
     color: 'white',
     height: 48,
     padding: '0 30px',
@@ -59,23 +59,6 @@ const Img = styled('img')({
 const Card = ({ blog }) => {
 
     
-
-    const showBlogCategories = blog =>
-        blog.categories.map((c, i) => (
-
-      <Chip  style={{padding:'10px'}} label={c.name} component="a" href={`/categories/${c.slug}`} clickable   color="primary" variant="outlined"/>
-   
-  
-        ));
-
-    const showBlogTags = blog =>
-        blog.tags.map((t, i) => (
-
-      <Chip style={{padding:'10px'}} label={t.name} component="a" href={`/tags/${t.slug}`}clickable   color="secondary" variant="outlined"/>
-   
- 
-        ));
-
     return (
 
         <>
@@ -106,8 +89,8 @@ const Card = ({ blog }) => {
 <ReactRoundedImage
           image={`${API}/blog/photo/${blog.slug}`}
           roundedColor="#66A5CC"
-          imageWidth="130"
-          imageHeight='130'
+          imageWidth="120"
+          imageHeight='120'
          
           roundedSize="0"
           borderRadius="5"
@@ -119,24 +102,14 @@ const Card = ({ blog }) => {
         <Typography gutterBottom style={{color:'#252626',fontSize:'16px'}}  component="div">
         {blog.title}
         </Typography>
-        <Typography sx={{color:'#595855',fontSize:'12px',display: { xs: 'none', sm: 'block' }}}     >
-              {<EditIcon  style={{color:'#0F9D58'}} fontSize='small'/>}{' '}
-                    <Link href={`/profile/${blog.postedBy.username}`}>
-                        {blog.postedBy.username}
-                    </Link>{' '}
-                    | {<AccessTimeIcon   style={{color:'#DB4437'}} fontSize='small' />} {moment(blog.updatedAt).fromNow()}
-              </Typography>
-        <Typography color="text.secondary"    sx={{textAlign:'left',fontSize:'12px',height:'100px',display: { xs: 'none', sm: 'block' }}}>
-        {renderHTML(blog.excerpt)}
-        </Typography>
 
 
         <ThemeProvider theme={darkTheme}>
         <Button sx={{
-           position: 'absolute',
-           bottom: 16,
-           right: 16,
-           backgroundColor:'#e6e7ed',
+        //    position: 'absolute',
+        //    bottom: 16,
+        //    right: 16,
+        //    backgroundColor:'#e6e7ed',
            color:'#4285F4'
         }}     href={`/blogs/${blog.slug}`}>Read More  <ArrowRightAltIcon /> </Button>
             </ThemeProvider>

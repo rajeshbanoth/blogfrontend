@@ -58,6 +58,7 @@
     "js-cookie": "^2.2.1",
     "jsonwebtoken": "^8.5.1",
     "mdb-react-ui-kit": "^3.0.0",
+    "mdbreact": "^5.2.0",
     "medium-draft": "^0.6.0-beta1",
     "medium-editor": "^5.23.3",
     "moment": "^2.29.1",

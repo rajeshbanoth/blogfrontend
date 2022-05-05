@@ -269,15 +269,6 @@ const SingleBlog = ({ blog, query }) => {
                                             <Typography component='div'>
                                                 <Box sx={{ fontWeight: 1000, m: 1, fontSize: '30px', color: '#535353' }}>{blog.title}</Box>
 
-                                                {/* 
-                                        sx={{
- 
-           minHeight:{ xs: 233, md: 450,lg:400},
-           minWidth:{ xs: 350, md: 450,lg:700},
-          maxHeight: { xs: 233, md: 450,lg:400 },
-          maxWidth: { xs: 350, md: 450,lg:700},
-        }} */}
-
                                             </Typography>
 
 
@@ -285,16 +276,6 @@ const SingleBlog = ({ blog, query }) => {
                                         </div>
 
                                         <div className="row" style={{ marginTop: '30px', display: 'center', justifyContent: 'center', paddingLeft: '5px', paddingRight: '5px' }}>
-
-                                            {/* 
-                                        <ReactRoundedImage
-                                            image={`${API}/blog/photo/${blog.slug}`}
-                                            roundedColor="#66A5CC"
-                                            imageWidth="100%"
-                                            imageHeight="300"
-                                            roundedSize="0"
-                                            borderRadius="0"
-                                        /> */}
 
                                             <Box
                                                 component="img"

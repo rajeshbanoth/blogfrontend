@@ -1,18 +1,23 @@
-import { Container, Toolbar } from '@mui/material';
+import { Box, Container, Divider, Grid, Toolbar, Typography } from '@mui/material';
 import Link from '@mui/material/Link';
 //import Link from 'next/link';
 import Head from 'next/head';
 import { withRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { listBlogsWithCategoriesAndTags } from '../actions/blog';
-import { getCategories } from '../actions/category';
+import { getCategories,singleCategoryForHome } from '../actions/category';
+import Bloglisthome from '../components/BlogListHome';
 import Layout from '../components/Layout';
 import MainFeaturedPost from '../components/MainFeaturedPost';
 import { APP_NAME, DOMAIN, FB_APP_ID } from '../config';
+import Homepagecard from '../components/blog/LatestBlogCards'
+import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 
 
 const Index = ({ router }) => {
     const [category, setCategories] = useState([])
+    const [blogs,setblogs]=useState([])
+    const [latestblog,setlatestblogs]=useState([])
 
     const mainFeaturedPost = {
         title: APP_NAME,
@@ -25,36 +30,86 @@ const Index = ({ router }) => {
 
       const [cat,setcat]=useState([])
 
+
     useEffect(() => {
 
         getCategories().then(data => {
             if (data.error) {
                 console.log(data.error)
-                //setValues({ ...values, error: data.error });
+  
             } else {
                 setCategories(data);
-                console.log(data)
+                setcat(data)
+                console.log(data.length,"len")
+                let len=data.length-1
+
+                let array=[]
+              
+
+             data.map((item,key)=>{
+                 console.log(key,"key")
+                singleCategoryForHome(item.name).then(data => {
+                    if (data.error) {
+                        console.log(data.error);
+                    } else {
+
+                        if(data.blogs.length>0)
+                        {
+                            array.push(...data.blogs)
+                        }
+
+                        if(len==key)
+                        {
+                            setblogs(array)
+                        }
+                    }
+                });
+
+             })
+
+       
+
+            }
+        });
+
+
+
+        let skip = 0;
+        let limit = 4;
+        listBlogsWithCategoriesAndTags(skip, limit).then(data => {
+            if (data.error) {
+                // console.log(data.error);
+            } else {
+              {
+                    // blogs: data.blogs,
+                    // categories: data.categories,
+                    // tags: data.tags,
+                    // totalBlogs: data.size,
+                    // blogsLimit: limit,
+                    // blogSkip: skip
+                    setlatestblogs(data.blogs)
+                };
             }
         });
 
     }, [])
 
 
-    useEffect(()=>{
-        let skip = 0;
-        let limit = 0;
-        return listBlogsWithCategoriesAndTags(skip, limit).then(data => {
-            if (data.error) {
-                console.log(data.error);
-            } else {
+    // useEffect(()=>{
+    //     let skip = 0;
+    //     let limit = 0;
+    //     return listBlogsWithCategoriesAndTags(skip, limit).then(data => {
+    //         if (data.error) {
+    //             console.log(data.error);
+    //         } else {
     
-                console.log(data.categories)
-                  setcat(data.categories)
+    //             console.log(data.categories)
+    //               setcat(data.categories)
     
-            }
-        });
+    //         }
+    //     });
     
-    },[])
+    // },[])
 
 
     const showAllCategories = () => {
@@ -77,6 +132,21 @@ color="inherit"
 
         ));
     };
+
+
+    const showlatestblogs =()=>{
+        return latestblog.map((blog,i)=>{
+            return(
+                <div key={i}  style={{ padding: '10px' }}>
+                                 
+                <div>
+                <Homepagecard blog={blog} />
+                </div>
+
+                </div>
+            )
+        })
+    }
 
     const head = () => (
         <Head>
@@ -133,82 +203,59 @@ color="inherit"
                             </div>
                         </div>
                     </div>
-                    <div className="container-fluid">
-                        <div className="row">
 
-                            {category.map((item,i) => (
-                                <div key={i} className="col-md-4">
-                                    <div className="flip flip-horizontal">
-                                        <div
-                                            className="front"
-                                            style={{
-                                                backgroundImage: `url(https://source.unsplash.com/random/?${item.name} )`
-                                        }}
-                                        >
-                                            <h2 className="text-shadow text-center h1">{item.name}</h2>
-                                        </div>
-                                        <div className="back text-center">
-                                            <Link href={`/categories/${item.name}`}>
-                                               
-                                                    <h3 className="h1">{item.name}</h3>
-                                                
-                                            </Link>
-                                            <p className="lead">
-                                               click here to view all the content related to {item.name}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
+                    <MDBContainer>
+      <MDBRow>
+
+      <MDBCol><Typography component="div">
+
+<Box sx={{ fontFamily: 'Monospace', fontSize: 'h6.fontSize', m: 1 }}>
+Latest Articles
+</Box>
+</Typography>
+<Divider style={{ minWidth: '100%' }} />
 
 
-                            {/* <div className="col-md-4">
-                                <div className="flip flip-horizontal">
-                                    <div
-                                        className="front"
-                                        style={{
-                                            backgroundImage: 'url(' + '/static/images/mountain.jpg' + ')'
-                                        }}
-                                    >
-                                        <h2 className="text-shadow text-center h1">Node</h2>
-                                    </div>
-                                    <div className="back text-center">
-                                        <Link href="/categories/node">
-                                            <a>
-                                                <h3 className="h1">Node Js</h3>
-                                            </a>
-                                        </Link>
-                                        <p className="lead">
-                                            The worlds most popular backend development tool for JavaScript Ninjas
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+    {showlatestblogs()}</MDBCol>
+        <MDBCol><Bloglisthome  blogs={blogs} categories={category}/></MDBCol>
 
-                            <div className="col-md-4">
-                                <div className="flip flip-horizontal">
-                                    <div
-                                        className="front"
-                                        style={{
-                                            backgroundImage: 'url(' + '/static/images/mountain.jpg' + ')'
-                                        }}
-                                    >
-                                        <h2 className="text-shadow text-center h1">Next</h2>
-                                    </div>
-                                    <div className="back text-center">
-                                        <Link href="/categories/nextjs">
-                                            <a>
-                                                <h3 className="h1">Next Js</h3>
-                                            </a>
-                                        </Link>
-                                        <p className="lead">
-                                            A Production ready web framework for building SEO React apps
-                                        </p>
-                                    </div>
-                                </div>
-                            </div> */}
-                        </div>
-                    </div>
+      
+      </MDBRow>
+    </MDBContainer>
+
+
+
+
+
+
+
+
+
+
+
+
+                 
+               
+
+ 
+                        
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   
+
                 </article>
 
 {/* 
