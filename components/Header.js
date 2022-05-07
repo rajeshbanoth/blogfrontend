@@ -41,6 +41,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CloseIcon from '@mui/icons-material/Close';
 import EmailIcon from '@mui/icons-material/Email';
 import InfoIcon from '@mui/icons-material/Info';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 
 
 Router.onRouteChangeStart = url => NProgress.start();
@@ -512,7 +513,7 @@ const Header = () => {
                         </Button>
                       </Paper>
 
-                      <Paper sx={{ borderRadius: 4, }}>
+                      <Paper sx={{ borderRadius: 4, marginBottom: 2}}>
                         <Button color="inherit" href='/aboutus' sx={{
                           display: "flex",
                           flexDirection: "column",
@@ -520,6 +521,18 @@ const Header = () => {
                         }} >
                           <InfoIcon fontSize='medium' color='primary' sx={{ marginLeft: 3, marginRight: 3, }} />
                           <Typography>About Us</Typography>
+
+                        </Button>
+                      </Paper>
+
+                      <Paper sx={{ borderRadius: 4, }}>
+                        <Button color="inherit" href='/blogs' sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                          textTransform: 'none'
+                        }} >
+                          <FormatListBulletedIcon fontSize='medium' color='primary' sx={{ marginLeft: 3, marginRight: 3, }} />
+                          <Typography>Blogs</Typography>
 
                         </Button>
                       </Paper>

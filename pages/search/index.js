@@ -263,7 +263,7 @@ const SearchBar=()=>{
     <> <React.Fragment>
   {head()}
 
-        <div style={{marginTop:'5rem'}}>
+        <div style={{marginTop:'6rem'}}>
      <SearchHeader /> </div>
           <SearchField >
             <SearchIconWrapper>
