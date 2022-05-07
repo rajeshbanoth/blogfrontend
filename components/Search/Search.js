@@ -38,7 +38,7 @@ const SearchField = styled('div')(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
   '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
   },
   marginRight: theme.spacing(2),
   marginLeft: 0,
@@ -221,10 +221,12 @@ export default function SearchBar() {
           placeholder="Search…"
           inputProps={{ 'aria-label': 'search' }}
           onChange={handleChange}
+          
         />
       </SearchField>
+
       <div style={{ paddingLeft: '38.4%', paddingRight: '20%', paddingTop: '10px' }}>
-        <Button onClick={searchSubmit}>Search</Button>
+        <Button  variant='contained' sx={{color:'#ffffff',backgroundColor:'#000000'}} onClick={searchSubmit}>Search</Button>
 
       </div>
 
@@ -238,7 +240,7 @@ export default function SearchBar() {
 
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>Close</Button>
+        <Button variant='contained' sx={{color:'#ffffff',backgroundColor:'#000000'}} onClick={handleClose}>Close</Button>
       </DialogActions>
 
     </React.Fragment></>

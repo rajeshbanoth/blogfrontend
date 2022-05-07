@@ -36,9 +36,13 @@ import { API } from '../../config';
 const SearchField = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
+  // backgroundColor: alpha(theme.palette.common.white, 0.15),
+  // '&:hover': {
+  //   backgroundColor: alpha(theme.palette.common.white, 0.15),
+  // },
+  backgroundColor:'#F5F4F3',
+   '&:hover': {
+    backgroundColor: '#F5F4F3',
   },
   marginRight: theme.spacing(2),
   marginLeft: 0,
@@ -212,7 +216,12 @@ export default function SearchBar() {
 
 
     <> <React.Fragment>
-      <Button variant="outlined" style={{ width: '18em' }} onClick={handleClickOpen} startIcon={<SearchIcon />}>
+      <Button  sx={{ display: { xs: 'none',sm:'flex',md:'flex' },color:'#1c1c1c',
+      backgroundColor:'#d6d4d4',
+      '&:hover': {
+        backgroundColor: '#d6d4d4',
+      },
+      width: '18em'}} variant="outlined"  onClick={handleClickOpen} startIcon={<SearchIcon />}>
         search...
       </Button>
       <Dialog
@@ -233,7 +242,7 @@ export default function SearchBar() {
             />
           </SearchField>
           <div style={{ paddingLeft: '38.4%', paddingRight: '20%', paddingTop: '10px' }}>
-            <Button onClick={searchSubmit}>Search</Button>
+            <Button variant='contained' sx={{color:'#ffffff',backgroundColor:'#000000'}} onClick={searchSubmit}>Search</Button>
 
           </div>
 
@@ -247,7 +256,7 @@ export default function SearchBar() {
 
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Close</Button>
+          <Button  variant='contained' sx={{color:'#ffffff',backgroundColor:'#000000'}} color='secondary' onClick={handleClose}>Close</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment></>

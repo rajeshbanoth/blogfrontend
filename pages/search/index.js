@@ -28,7 +28,7 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import { API, APP_NAME, DOMAIN, FB_APP_ID } from '../../config';
-import SearchHeader from '../../components/SearchHeader'
+import SearchHeader from '../../components/Header'
 import StickyFooter from '../../components/StickyFooter'
 import Head from 'next/head';
 
