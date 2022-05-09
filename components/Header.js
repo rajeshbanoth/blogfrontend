@@ -301,9 +301,9 @@ const Header = () => {
 
       <Box  >
 
-        <AppBar position="fixed" elevation={0} sx={{ top: 'auto', bottom: 40, backgroundColor: 'transparent', display: { xs: 'block', sm: 'none', md: 'none' } }} >
+        <AppBar position="fixed" elevation={0} sx={{ top: 'auto', bottom: 12, backgroundColor: 'transparent', display: { xs: 'block', sm: 'none', md: 'none' } }} >
 
-          <Paper sx={{ marginLeft: 3, marginRight: 3, borderRadius: 3 }}>
+          <Paper sx={{ marginLeft: 3, marginRight: 3, borderRadius: 5 ,backgroundColor:'#fff3e0'}}>
             <Toolbar >
 
               <Button color="inherit" href='/' sx={{
@@ -312,8 +312,8 @@ const Header = () => {
                 textTransform: 'none'
 
               }} >
-                <HomeIcon fontSize='medium' color='primary' sx={{ marginLeft: 3, marginRight: 3, textTransform: 'none' }} />
-                <Typography>Home</Typography>
+                <HomeIcon fontSize='large' color='primary' sx={{ marginLeft: 3, marginRight: 3, textTransform: 'none',color:'#e65100' }} />
+                {/* <Typography>Home</Typography> */}
 
               </Button>
 
@@ -324,8 +324,8 @@ const Header = () => {
                 flexDirection: "column",
                 textTransform: 'none'
               }} >
-                <SearchIcon fontSize='medium' color='primary' sx={{ marginLeft: 3, marginRight: 3 }} />
-                <Typography>Search</Typography>
+                <SearchIcon fontSize='large' color='primary' sx={{ marginLeft: 3, marginRight: 3,color:'#e65100' }} />
+                {/* <Typography>Search</Typography> */}
 
               </Button>
 
@@ -336,8 +336,8 @@ const Header = () => {
                 flexDirection: "column",
                 textTransform: 'none'
               }} >
-                <AccountCircleIcon fontSize='medium' color='primary' sx={{ marginLeft: 3, marginRight: 3 }} />
-                <Typography>Account</Typography>
+                <AccountCircleIcon fontSize='large' sx={{ marginLeft: 3, marginRight: 3,color:'#e65100' }} />
+                {/* <Typography>Account</Typography> */}
 
               </Button>
 
@@ -468,8 +468,8 @@ const Header = () => {
                 flexDirection: "column",
                 textTransform: 'none'
               }} >
-                <AddIcon fontSize='medium' color='primary' sx={{ marginLeft: 3, marginRight: 3 }} />
-                <Typography>More</Typography>
+                <AddIcon fontSize='large'  sx={{ marginLeft: 3, marginRight: 3,color:'#e65100' }} />
+                {/* <Typography>More</Typography> */}
 
               </Button>
 
@@ -478,7 +478,7 @@ const Header = () => {
                   <Fade {...TransitionProps} timeout={350}>
                     <Box sx={{ p: 1, bgcolor: 'transparent', paddingRight: 2 }}>
 
-                      <Paper sx={{ borderRadius: 4, marginBottom: 2 }}>
+                      <Paper sx={{ borderRadius: 6, marginBottom: 2 }}>
                         <Button onClick={handleClick} color="inherit" sx={{
                           display: "flex",
                           flexDirection: "column",
@@ -489,6 +489,8 @@ const Header = () => {
 
                         </Button>
                       </Paper>
+
+                      
                       <Paper sx={{ borderRadius: 4, marginBottom: 2 }}>
                         <Button href='/user/crud/blog'  color="inherit" sx={{
                           display: "flex",
