@@ -603,7 +603,7 @@ const Header = () => {
                 <Box sx={{ flexGrow: 1 }} />
 
                 <SearchBar />
-                <Typography variant='h4' sx={{ display: { xs: 'block', sm: 'none', md: 'none' } }}>Gloom</Typography>
+                <Typography variant='h4' sx={{ display: { xs: 'block', sm: 'none', md: 'none' } ,fontWeight:600}}>Gloom</Typography>
                 <Box sx={{ flexGrow: 1 }} />
                 <Box sx={{
                   display: { xs: 'none', md: 'flex' },
