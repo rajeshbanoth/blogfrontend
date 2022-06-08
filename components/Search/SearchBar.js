@@ -214,7 +214,7 @@ export default function SearchBar() {
 
 
 
-
+ 
     <> <React.Fragment>
       <Button  sx={{ display: { xs: 'none',sm:'flex',md:'flex' },color:'#1c1c1c',
       backgroundColor:'#d6d4d4',
