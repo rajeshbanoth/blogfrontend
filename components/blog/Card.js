@@ -116,10 +116,10 @@ const Card = ({ blog }) => {
           </CardMedia>
 
        <CardContent sx={{ flex: 1 }}>
-        <Typography gutterBottom style={{color:'#252626',fontSize:'16px'}}  component="div">
+        <Link  href={`/blogs/${blog.slug}`} underline='none'  style={{color:'#3e2723',fontSize:'16px',fontWeight:600,fontFamily:'serif'}} >
         {blog.title}
-        </Typography>
-        <Typography sx={{color:'#595855',fontSize:'12px',display: { xs: 'none', sm: 'block' }}}     >
+        </Link>
+        <Typography sx={{color:'#595855',fontSize:'12px',  display: { xs: 'none', sm: 'block' }}}     >
               {<EditIcon  style={{color:'#0F9D58'}} fontSize='small'/>}{' '}
                     <Link href={`/profile/${blog.postedBy.username}`}>
                         {blog.postedBy.username}
@@ -137,7 +137,8 @@ const Card = ({ blog }) => {
            bottom: 16,
            right: 16,
            backgroundColor:'#e6e7ed',
-           color:'#4285F4'
+           color:'#4285F4',
+           display: { xs: 'none', sm: 'block' }
         }}     href={`/blogs/${blog.slug}`}>Read More  <ArrowRightAltIcon /> </Button>
             </ThemeProvider>
        

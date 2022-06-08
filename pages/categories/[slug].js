@@ -96,7 +96,7 @@ useEffect(()=>{
             {head()}
             <Layout>
                 <main>
-                    <div className="container-fluid text-center">
+                    <div className="container-fluid text-center" style={{marginTop:'-50px'}}>
                     <Container maxWidth="lg">
 
 <Toolbar

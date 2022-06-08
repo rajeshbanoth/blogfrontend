@@ -209,7 +209,7 @@ color="inherit"
 
       <MDBCol md="6"><Typography component="div">
 
-<Box sx={{ fontFamily: 'Monospace', fontSize: 'h6.fontSize', m: 1 }}>
+<Box sx={{ fontSize: 'h6.fontSize', m: 1 ,fontWeight:800,color:'#0F9D58'}}>
 Latest Articles
 </Box>
 </Typography>
