@@ -303,7 +303,9 @@ const Header = () => {
 
         <AppBar position="fixed" elevation={0} sx={{ top: 'auto', bottom: 12, backgroundColor: 'transparent', display: { xs: 'block', sm: 'none', md: 'none' } }} >
 
-          <Paper sx={{ marginLeft: 3, marginRight: 3, borderRadius: 5 ,backgroundColor:'#fff3e0'}}>
+          <Paper sx={{ marginLeft: 3, marginRight: 3, borderRadius: 5 ,
+            // backgroundColor:'#fff3e0'
+            }}>
             <Toolbar >
 
               <Button color="inherit" href='/' sx={{
@@ -312,7 +314,7 @@ const Header = () => {
                 textTransform: 'none'
 
               }} >
-                <HomeIcon fontSize='large' color='primary' sx={{ marginLeft: 3, marginRight: 3, textTransform: 'none',color:'#e65100' }} />
+                <HomeIcon fontSize='large' color='primary' sx={{ marginLeft: 3, marginRight: 3, textTransform: 'none',color:'#212121' }} />
                 {/* <Typography>Home</Typography> */}
 
               </Button>
@@ -324,7 +326,7 @@ const Header = () => {
                 flexDirection: "column",
                 textTransform: 'none'
               }} >
-                <SearchIcon fontSize='large' color='primary' sx={{ marginLeft: 3, marginRight: 3,color:'#e65100' }} />
+                <SearchIcon fontSize='large' color='primary' sx={{ marginLeft: 3, marginRight: 3,color:'#212121' }} />
                 {/* <Typography>Search</Typography> */}
 
               </Button>
@@ -336,7 +338,7 @@ const Header = () => {
                 flexDirection: "column",
                 textTransform: 'none'
               }} >
-                <AccountCircleIcon fontSize='large' sx={{ marginLeft: 3, marginRight: 3,color:'#e65100' }} />
+                <AccountCircleIcon fontSize='large' sx={{ marginLeft: 3, marginRight: 3,color:'#212121' }} />
                 {/* <Typography>Account</Typography> */}
 
               </Button>
@@ -468,7 +470,7 @@ const Header = () => {
                 flexDirection: "column",
                 textTransform: 'none'
               }} >
-                <AddIcon fontSize='large'  sx={{ marginLeft: 3, marginRight: 3,color:'#e65100' }} />
+                <AddIcon fontSize='large'  sx={{ marginLeft: 3, marginRight: 3,color:'#212121' }} />
                 {/* <Typography>More</Typography> */}
 
               </Button>
@@ -572,12 +574,7 @@ const Header = () => {
             // display: { xs: 'none',sm: 'block',ms:'block' }
           }}
           >
-            <AppBar position="fixed" sx={{
-              xs: {
-                elevation: 0
-
-              }
-            }}>
+            <AppBar elevation={0} position="fixed" >
               <Toolbar style={{ padding: 11 }}>
                 <IconButton
                   size="large"

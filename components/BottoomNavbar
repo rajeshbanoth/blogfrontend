@@ -1,0 +1,254 @@
+        <AppBar position="fixed" elevation={0} sx={{ top: 'auto', bottom: 12, backgroundColor: 'transparent', display: { xs: 'block', sm: 'none', md: 'none' } }} >
+
+          <Paper sx={{ marginLeft: 3, marginRight: 3, borderRadius: 5 ,
+            // backgroundColor:'#fff3e0'
+            }}>
+            <Toolbar >
+
+              <Button color="inherit" href='/' sx={{
+                display: "flex",
+                flexDirection: "column",
+                textTransform: 'none'
+
+              }} >
+                <HomeIcon fontSize='large' color='primary' sx={{ marginLeft: 3, marginRight: 3, textTransform: 'none',color:'#292827' }} />
+              
+
+              </Button>
+
+              <Box sx={{ flexGrow: 1 }} />
+
+              <Button href='/search' color="inherit" sx={{
+                display: "flex",
+                flexDirection: "column",
+                textTransform: 'none'
+              }} >
+                <SearchIcon fontSize='large' color='primary' sx={{ marginLeft: 3, marginRight: 3,color:'#e65100' }} />
+             
+
+              </Button>
+
+              <Box sx={{ flexGrow: 1 }} />
+
+              <Button aria-describedby={idAccountLabel} onClick={handleClickAccountLabel} color="inherit" sx={{
+                display: "flex",
+                flexDirection: "column",
+                textTransform: 'none'
+              }} >
+                <AccountCircleIcon fontSize='large' sx={{ marginLeft: 3, marginRight: 3,color:'#e65100' }} />
+                {/* <Typography>Account</Typography> */}
+
+              </Button>
+
+
+
+              <Popper id={idAccountLabel} open={openAccountLabel} anchorEl={anchorAccountLabel} transition>
+                {({ TransitionProps }) => (
+                  <Fade {...TransitionProps} timeout={350}>
+                    <Box sx={{ p: 1, bgcolor: 'transparent', paddingRight: 2 }}>
+
+                      <Paper sx={{ borderRadius: 4, marginBottom: 2 }}>
+                        <Button onClick={handleClickAccountLabel} color="inherit" sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                          textTransform: 'none'
+                        }} >
+                          <CloseIcon fontSize='medium' sx={{ marginLeft: 4, marginRight: 3, color: '#DB4437' }} />
+                          <Typography>Close</Typography>
+
+                        </Button>
+                      </Paper>
+
+
+
+                      {isAuth() && isAuth().role === 0 && (
+
+
+
+
+                        <Paper sx={{ borderRadius: 4, marginBottom: 2 }}>
+                          <Button color="inherit" sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            textTransform: 'none'
+                          }} href='/user'>
+                            <DashboardIcon fontSize='medium' color='primary' sx={{ marginLeft: 3, marginRight: 3 }} />
+                            <Typography>Dashboard</Typography>
+
+                          </Button>
+                        </Paper>
+
+                      )}
+
+                      {isAuth() && isAuth().role === 1 && (
+
+                        <Paper sx={{ borderRadius: 4, marginBottom: 2 }}>
+                          <Button color="inherit" sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            textTransform: 'none'
+                          }} href='/admin'>
+                            <DashboardIcon fontSize='medium' color='primary' sx={{ marginLeft: 3, marginRight: 3 }} />
+                            <Typography>Dashboard</Typography>
+
+                          </Button>
+                        </Paper>
+                      )}
+
+
+
+
+
+
+                      {!isAuth() && (
+                        <>
+
+                          <Paper sx={{ borderRadius: 4, marginBottom: 2 }}>
+                            <Button color="inherit" href='/signin' sx={{
+                              display: "flex",
+                              flexDirection: "column",
+                              textTransform: 'none'
+
+                            }} >
+                              <LoginIcon fontSize='medium' color='primary' sx={{ marginLeft: 3, marginRight: 3 }} />
+                              <Typography>Login</Typography>
+
+                            </Button>
+                          </Paper>
+
+                          <Paper sx={{ borderRadius: 4, marginBottom: 2 }}>
+                            <Button href='/signup' color="inherit" sx={{
+                              display: "flex",
+                              flexDirection: "column",
+                              textTransform: 'none'
+                            }} >
+                              <HowToRegIcon fontSize='medium' color='primary' sx={{ marginLeft: 3, marginRight: 3 }} />
+                              <Typography>Register</Typography>
+
+                            </Button>
+                          </Paper>
+                        </>
+                      )}
+
+
+
+                      {isAuth() && (
+
+
+
+
+                        <Paper sx={{ borderRadius: 4, marginBottom: 2 }}>
+                          <Button color="inherit" sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            textTransform: 'none'
+                          }} onClick={() => signout(() => Router.replace(`/signin`))} >
+                            <LogoutIcon fontSize='medium' color='primary' sx={{ marginLeft: 3, marginRight: 3 }} />
+                            <Typography>Logout</Typography>
+
+                          </Button>
+                        </Paper>
+
+                      )}
+
+
+
+
+                    </Box>
+                  </Fade>
+                )}
+              </Popper>
+
+
+
+              <Box sx={{ flexGrow: 1 }} />
+              <Button aria-describedby={id} onClick={handleClick} color="inherit" sx={{
+                display: "flex",
+                flexDirection: "column",
+                textTransform: 'none'
+              }} >
+                <AddIcon fontSize='large'  sx={{ marginLeft: 3, marginRight: 3,color:'#e65100' }} />
+                {/* <Typography>More</Typography> */}
+
+              </Button>
+
+              <Popper id={id} open={open} anchorEl={anchorE} transition>
+                {({ TransitionProps }) => (
+                  <Fade {...TransitionProps} timeout={350}>
+                    <Box sx={{ p: 1, bgcolor: 'transparent', paddingRight: 2 }}>
+
+                      <Paper sx={{ borderRadius: 6, marginBottom: 2 }}>
+                        <Button onClick={handleClick} color="inherit" sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                          textTransform: 'none'
+                        }} >
+                          <CloseIcon fontSize='medium' sx={{ marginLeft: 4, marginRight: 3, color: '#DB4437' }} />
+                          <Typography>Close</Typography>
+
+                        </Button>
+                      </Paper>
+
+                      
+                      <Paper sx={{ borderRadius: 4, marginBottom: 2 }}>
+                        <Button href='/user/crud/blog'  color="inherit" sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                          textTransform: 'none'
+                        }} >
+                          <ArticleIcon fontSize='medium' color='primary' sx={{ marginLeft: 3, marginRight: 3 }} />
+                          <Typography>Create Blog</Typography>
+
+                        </Button>
+                      </Paper>
+
+                      <Paper sx={{ borderRadius: 4, marginBottom: 2 }}>
+                        <Button href='/contact' color="inherit" sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                          textTransform: 'none'
+                        }} >
+                          <EmailIcon fontSize='medium' color='primary' sx={{ marginLeft: 3, marginRight: 3 }} />
+                          <Typography>Contact Us</Typography>
+
+                        </Button>
+                      </Paper>
+
+                      <Paper sx={{ borderRadius: 4, marginBottom: 2}}>
+                        <Button color="inherit" href='/aboutus' sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                          textTransform: 'none'
+                        }} >
+                          <InfoIcon fontSize='medium' color='primary' sx={{ marginLeft: 3, marginRight: 3, }} />
+                          <Typography>About Us</Typography>
+
+                        </Button>
+                      </Paper>
+
+                      <Paper sx={{ borderRadius: 4, }}>
+                        <Button color="inherit" href='/blogs' sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                          textTransform: 'none'
+                        }} >
+                          <FormatListBulletedIcon fontSize='medium' color='primary' sx={{ marginLeft: 3, marginRight: 3, }} />
+                          <Typography>Blogs</Typography>
+
+                        </Button>
+                      </Paper>
+
+
+                    </Box>
+                  </Fade>
+                )}
+              </Popper>
+
+
+
+
+            </Toolbar>
+
+          </Paper>
+
+        </AppBar>

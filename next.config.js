@@ -10,6 +10,7 @@ module.exports = {
     publicRuntimeConfig: {
    API_PRODUCTION:process.env.API_PRODUCTION,
   // API_PRODUCTION:'http://localhost:8000/api',
+  // API_PRODUCTION:'https://nextblogserver.herokuapp.com/api',
  
 
       PRODUCTION:process.env.PRODUCTION,
