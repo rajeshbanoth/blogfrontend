@@ -48,45 +48,6 @@ Router.onRouteChangeStart = url => NProgress.start();
 Router.onRouteChangeComplete = url => NProgress.done();
 Router.onRouteChangeError = url => NProgress.done();
 
-
-
-const StyledFab = styled(Fab)({
-  position: 'absolute',
-  zIndex: 1,
-  top: -30,
-  left: 0,
-  right: 0,
-  margin: '0 auto',
-});
-
-
-const SearchField = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(1),
-  marginLeft: 0,
-  width: 'auto',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(1),
-    width: 'auto',
-  },
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
-
-
 const darkTheme = createTheme({
   palette: {
     // mode: 'dark',
@@ -97,21 +58,6 @@ const darkTheme = createTheme({
 
 
 });
-
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
-}));
 
 
 
@@ -126,9 +72,6 @@ const Header = () => {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
@@ -249,9 +192,14 @@ const Header = () => {
 
       {isAuth() && isAuth().role === 0 && (
 
-        <MenuItem >
+        <>
 
-          <Button sx={{ color: '#1c1c1c' }} href='/user'> {`${isAuth().name}'s Dashboard`}</Button></MenuItem>
+
+          <MenuItem >
+
+            <Button sx={{ color: '#1c1c1c' }} href='/user'> {`${isAuth().name}'s Dashboard`}</Button></MenuItem>
+        </>
+
 
       )}
 
@@ -303,9 +251,10 @@ const Header = () => {
 
         <AppBar position="fixed" elevation={0} sx={{ top: 'auto', bottom: 12, backgroundColor: 'transparent', display: { xs: 'block', sm: 'none', md: 'none' } }} >
 
-          <Paper sx={{ marginLeft: 3, marginRight: 3, borderRadius: 5 ,
+          <Paper sx={{
+            marginLeft: 3, marginRight: 3, borderRadius: 5,
             // backgroundColor:'#fff3e0'
-            }}>
+          }}>
             <Toolbar >
 
               <Button color="inherit" href='/' sx={{
@@ -314,7 +263,7 @@ const Header = () => {
                 textTransform: 'none'
 
               }} >
-                <HomeIcon fontSize='large' color='primary' sx={{ marginLeft: 3, marginRight: 3, textTransform: 'none',color:'#212121' }} />
+                <HomeIcon fontSize='large' color='primary' sx={{ marginLeft: 3, marginRight: 3, textTransform: 'none', color: '#212121' }} />
                 {/* <Typography>Home</Typography> */}
 
               </Button>
@@ -326,7 +275,7 @@ const Header = () => {
                 flexDirection: "column",
                 textTransform: 'none'
               }} >
-                <SearchIcon fontSize='large' color='primary' sx={{ marginLeft: 3, marginRight: 3,color:'#212121' }} />
+                <SearchIcon fontSize='large' color='primary' sx={{ marginLeft: 3, marginRight: 3, color: '#212121' }} />
                 {/* <Typography>Search</Typography> */}
 
               </Button>
@@ -338,7 +287,7 @@ const Header = () => {
                 flexDirection: "column",
                 textTransform: 'none'
               }} >
-                <AccountCircleIcon fontSize='large' sx={{ marginLeft: 3, marginRight: 3,color:'#212121' }} />
+                <AccountCircleIcon fontSize='large' sx={{ marginLeft: 3, marginRight: 3, color: '#212121' }} />
                 {/* <Typography>Account</Typography> */}
 
               </Button>
@@ -470,7 +419,7 @@ const Header = () => {
                 flexDirection: "column",
                 textTransform: 'none'
               }} >
-                <AddIcon fontSize='large'  sx={{ marginLeft: 3, marginRight: 3,color:'#212121' }} />
+                <AddIcon fontSize='large' sx={{ marginLeft: 3, marginRight: 3, color: '#212121' }} />
                 {/* <Typography>More</Typography> */}
 
               </Button>
@@ -492,9 +441,9 @@ const Header = () => {
                         </Button>
                       </Paper>
 
-                      
+
                       <Paper sx={{ borderRadius: 4, marginBottom: 2 }}>
-                        <Button href='/user/crud/blog'  color="inherit" sx={{
+                        <Button href='/user/crud/blog' color="inherit" sx={{
                           display: "flex",
                           flexDirection: "column",
                           textTransform: 'none'
@@ -517,7 +466,7 @@ const Header = () => {
                         </Button>
                       </Paper>
 
-                      <Paper sx={{ borderRadius: 4, marginBottom: 2}}>
+                      <Paper sx={{ borderRadius: 4, marginBottom: 2 }}>
                         <Button color="inherit" href='/aboutus' sx={{
                           display: "flex",
                           flexDirection: "column",
@@ -603,7 +552,7 @@ const Header = () => {
                 <Box sx={{ flexGrow: 1 }} />
 
                 <SearchBar />
-                <Typography variant='h4' sx={{ display: { xs: 'block', sm: 'none', md: 'none' } ,fontWeight:600}}>Gloom</Typography>
+                <Typography variant='h4' sx={{ display: { xs: 'block', sm: 'none', md: 'none' }, fontWeight: 600 }}>Gloom</Typography>
                 <Box sx={{ flexGrow: 1 }} />
                 <Box sx={{
                   display: { xs: 'none', md: 'flex' },

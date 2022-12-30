@@ -13,6 +13,7 @@ import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import { Button, Grid } from '@mui/material';
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   '& .MuiToggleButtonGroup-grouped': {
@@ -50,8 +51,10 @@ export default function toggle(props) {
           display: 'flex',
           border: (theme) => `1px solid ${theme.palette.divider}`,
           flexWrap: 'wrap',
+   
         }}
       >
+
         <StyledToggleButtonGroup
           size="small"
           value={alignment}
@@ -63,12 +66,32 @@ export default function toggle(props) {
             <FormatAlignLeftIcon />
             Quill Editor
           </ToggleButton>
+
           <ToggleButton value="center" aria-label="centered" onClick={props.editorjs}>
             <FormatAlignCenterIcon />
             Editor js
           </ToggleButton>
+
+          <ToggleButton value="right" aria-label="centered" onClick={props.emailEditor}>
+            <FormatAlignCenterIcon />
+            React Email Editor
+          </ToggleButton>
+
+
+
          
         </StyledToggleButtonGroup>
+
+        {props.EmailEditorState && 
+         <div style ={{padding:'5px'}}>
+         <Button variant='contained' style={{marginLeft:'700px',height:'40px',}} onClick={props.handlePublish}>
+    Publish
+  </Button>
+         </div>
+        }
+      
+
+
        
       </Paper>
     </div>

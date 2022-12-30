@@ -1,18 +1,13 @@
 
 import { withRouter } from 'next/router';
-
-import Head from 'next/head';
-
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
+import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import ButtonBase from '@mui/material/ButtonBase';
-import StickyFooter from '../../components/StickyFooter'
-import Header from '../../components/Header'
+import * as React from 'react';
+import Header from '../../components/Header';
+import StickyFooter from '../../components/StickyFooter';
 
-import Gist from "react-gist";
 
 
 const Img = styled('img')({

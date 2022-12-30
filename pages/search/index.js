@@ -1,4 +1,4 @@
-import React ,{useEffect} from 'react';
+import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -46,7 +46,7 @@ const SearchField = styled('div')(({ theme }) => ({
   },
   marginRight: theme.spacing(2),
   marginLeft: 0,
-  
+
   [theme.breakpoints.up('sm')]: {
     marginLeft: theme.spacing(3),
     width: 'auto',
@@ -81,7 +81,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
-    
+
     [theme.breakpoints.up('md')]: {
       width: '20ch',
     },
@@ -93,7 +93,7 @@ const BootstrapDialogTitle = (props) => {
   const { children, onClose, ...other } = props;
 
   return (
-    
+
     <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
       {children}
       {onClose ? (
@@ -116,7 +116,7 @@ const BootstrapDialogTitle = (props) => {
 
 
 
-const SearchBar=()=>{
+const SearchBar = () => {
   const [open, setOpen] = React.useState(false);
   const [fullWidth, setFullWidth] = React.useState(true);
   const [maxWidth, setMaxWidth] = React.useState('sm');
@@ -151,33 +151,32 @@ const SearchBar=()=>{
   });
 
   const { search, results, searched, message } = values;
- 
-  useEffect(()=>{
-       const url = window.location.href;
-       console.log(url)
-       const spliturl = url.split('?')
-       console.log(spliturl)
-       const key = spliturl[1]
-       console.log(key)
+
+  useEffect(() => {
+    const url = window.location.href;
+    console.log(url)
+    const spliturl = url.split('?')
+    console.log(spliturl)
+    const key = spliturl[1]
+    console.log(key)
     //    setValues({...values,search: key })
-       const search = {search : key}
-       console.log(search)
+    const search = { search: key }
+    console.log(search)
 
-       if(key!==undefined)
-       {
-        listSearch( search ).then(data => {
-          // console.log(data)
-          setValues({ ...values, results: data, searched: true, message: `${data.length} blogs found` });
-        });
+    if (key !== undefined) {
+      listSearch(search).then(data => {
+        // console.log(data)
+        setValues({ ...values, results: data, searched: true, message: `${data.length} blogs found` });
+      });
 
-       }
-       
-  
-  },[])
+    }
+
+
+  }, [])
 
   const searchSubmit = e => {
     e.preventDefault();
-    console.log('search is ',search)
+    console.log('search is ', search)
     listSearch({ search }).then(data => {
       console.log(data)
       setValues({ ...values, results: data, searched: true, message: `${data.length} blogs found` });
@@ -190,31 +189,31 @@ const SearchBar=()=>{
   };
 
 
-  
+
   const head = () => (
     <Head>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1526259079521468"
- crossorigin="anonymous"></script>
-        <title>
-            {APP_NAME}|Find What You Want
-        </title>
-        <meta name="description" content={"Gloom||Search"} />
-        <link rel="canonical" href={`${DOMAIN}/search`} />
-        <meta property="og:title" content={`Gloom|| ${APP_NAME}`} />
-        <meta property="og:description" content={"Gloom|| Search Your Favorite Content "} />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={`${DOMAIN}/search`} />
-        <meta property="og:site_name" content={`${APP_NAME}:Find What You Want`} />
-        <meta property="og:image:type" content="image/jpg" />
-        <meta property="fb:app_id" content={`${FB_APP_ID}`} />
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1526259079521468"
+        crossorigin="anonymous"></script>
+      <title>
+        {APP_NAME}|Find What You Want
+      </title>
+      <meta name="description" content={"Gloom||Search"} />
+      <link rel="canonical" href={`${DOMAIN}/search`} />
+      <meta property="og:title" content={`Gloom|| ${APP_NAME}`} />
+      <meta property="og:description" content={"Gloom|| Search Your Favorite Content "} />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={`${DOMAIN}/search`} />
+      <meta property="og:site_name" content={`${APP_NAME}:Find What You Want`} />
+      <meta property="og:image:type" content="image/jpg" />
+      <meta property="fb:app_id" content={`${FB_APP_ID}`} />
     </Head>
-);
+  );
 
 
   const searchedBlogs = (results = []) => {
     return (
 
-      <List sx={{ width: '100%'}}>
+      <List sx={{ width: '100%' }}>
 
         {message && <p className="pt-4 text-muted font-italic">{message}</p>}
 
@@ -261,53 +260,52 @@ const SearchBar=()=>{
 
 
     <> <React.Fragment>
-  {head()}
+      {head()}
 
-        <div style={{marginTop:'6rem'}}>
-     <SearchHeader /> </div>
-          <SearchField >
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-              onChange={handleChange}
-              style={{width:'100%'}}
-            />
-          </SearchField>
-<div style={{paddingLeft:'38.4%',paddingRight:'20%',paddingTop:'10px'}}>
-<Button
+      <div style={{ marginTop: '6rem' }}>
+        <SearchHeader /> </div>
+      <SearchField >
+        <SearchIconWrapper>
+          <SearchIcon />
+        </SearchIconWrapper>
+        <StyledInputBase
+          placeholder="Search…"
+          inputProps={{ 'aria-label': 'search' }}
+          onChange={handleChange}
+          style={{ width: '100%' }}
+        />
+      </SearchField>
+      <div style={{ paddingLeft: '38.4%', paddingRight: '20%', paddingTop: '10px' }}>
+        <Button
 
-sx={{ mt: 3, mb: 2,color:'#ffffff',backgroundColor:'#121212',
-"&:hover": {
-  backgroundColor:'#121212',
-}
+          sx={{
+            mt: 3, mb: 2, color: '#ffffff', backgroundColor: '#121212',
+            "&:hover": {
+              backgroundColor: '#121212',
+            }
+
+          }}
+
+          variant='contained' onClick={searchSubmit}>Search</Button>
+
+      </div>
+
+      {/* </DialogTitle> */}
+      <DialogContent>
+        <DialogContentText>
+          {searched ? <div >{searchedBlogs(results)}</div> : (<Typography gutterBottom>
+            No results
+          </Typography>)}
+        </DialogContentText>
+
+      </DialogContent>
+      <DialogActions>
+
+      </DialogActions>
+
+      <StickyFooter />
 
 
-
-}}
-
-variant='contained' onClick={searchSubmit}>Search</Button>
-
-</div>
-        
-        {/* </DialogTitle> */}
-        <DialogContent>
-          <DialogContentText>
-            {searched ? <div >{searchedBlogs(results)}</div> : (<Typography gutterBottom>
-              No results
-            </Typography>)}
-          </DialogContentText>
-
-        </DialogContent>
-        <DialogActions>
-     
-        </DialogActions>
-
-        <StickyFooter />
-
-        
       {/* </Dialog> */}
     </React.Fragment></>
 

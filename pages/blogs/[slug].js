@@ -128,7 +128,7 @@ const SingleBlog = ({ blog, query }) => {
                     key={i}
                     variant="body2"
                     href={`/categories/${c.slug}`}
-                    sx={{ p: 1, flexShrink: 0, fontSize: '20px' ,fontFamily: 'Monospace' }}
+                    sx={{ p: 1, flexShrink: 0, fontSize: '20px', fontFamily: 'Monospace' }}
                 >
                     {c.name}
                 </Link>
@@ -185,7 +185,7 @@ const SingleBlog = ({ blog, query }) => {
     const showRelatedBlog = () => {
         return related.map((blog, i) => (
             <div className="col-md-4" key={i}>
-                <article style={{padding:'5px'}}>
+                <article style={{ padding: '5px' }}>
                     <SmallCard blog={blog} />
                 </article>
             </div>
@@ -266,12 +266,12 @@ const SingleBlog = ({ blog, query }) => {
 
 
 
-                                        <div className="display-2 pb-3 pt-3 text-center font-weight-bold" style={{ marginTop: '30px', display: 'center', overflowWrap: 'break-word', justifyContent: 'center', paddingLeft: '5px', paddingRight: '5px' }}>
+                                        <div className="display-2 pb-3 pt-3 text-center font-weight-bold" style={{ marginTop: '10px', display: 'center', overflowWrap: 'break-word', justifyContent: 'center', paddingLeft: '5px', paddingRight: '5px' }}>
 
 
-                                           
+
                                             <Typography component='div'>
-                                                <Box sx={{ fontWeight: 1000, m: 1, fontSize: '30px', color: '#535353',fontFamily: 'Monospace'  }}>{blog.title}</Box>
+                                                <Box sx={{ fontWeight: 1000, m: 1, fontSize: '30px', color: '#535353', fontFamily: 'Monospace' }}>{blog.title}</Box>
 
                                             </Typography>
 
@@ -341,21 +341,36 @@ const SingleBlog = ({ blog, query }) => {
                                     </div>
                                 </section>
                             </div>
-                           
-                       
+
+
 
                             <div className="container">
                                 <section>
 
+                                    {JSON.parse(blog.body).editor === "Editorjs" && (<MediumEditor value={JSON.parse(JSON.parse(blog.body).body)} />)}
 
-                                    {blog.body.substring(2, 6) === 'time' ? (<>
-                                        <MediumEditor value={JSON.parse(blog.body)} /> </>) : (<>    <div className="col-md-12 lead" >   <Typography style={{ color: '#595855', wordBreak: 'break-word' , }}  >
+                                    {JSON.parse(blog.body).editor === "Quill" && (
+                                        <div className="col-md-12 lead" >   <Typography style={{ color: '#595855', wordBreak: 'break-word', }}  >
                                             {/* style={{ color: '#595855' }}  */}
 
-                                            {renderHTML(blog.body)}
+                                            {renderHTML(JSON.parse(blog.body).body)}
 
 
-                                        </Typography></div>    </>)}
+                                        </Typography></div>
+                                    )}
+
+
+                                    {JSON.parse(blog.body).editor === "EmailEditor" && (
+                                        <div className="col-md-12 lead" >
+                                            <div dangerouslySetInnerHTML={{ __html: JSON.parse(blog.body).body }} />
+
+
+
+
+                                        </div>
+                                    )}
+
+
                                 </section>
                             </div>
 
@@ -364,15 +379,15 @@ const SingleBlog = ({ blog, query }) => {
                             <div className="container">
 
 
-                            <div className="display-2 pb-3 pt-3 text-center font-weight-bold" style={{ marginTop: '30px', display: 'center', overflowWrap: 'break-word', justifyContent: 'center', paddingLeft: '5px', paddingRight: '5px' }}>
+                                <div className="display-2 pb-3 pt-3 text-center font-weight-bold" style={{ marginTop: '30px', display: 'center', overflowWrap: 'break-word', justifyContent: 'center', paddingLeft: '5px', paddingRight: '5px' }}>
 
 
-                                           
-<Typography component='div'>
-    <Box sx={{ fontWeight: 1000, m: 1, fontSize: '30px', color: '#535353',fontFamily: 'Monospace'  }}>Related Blogs</Box>
 
-</Typography>
-</div>
+                                    <Typography component='div'>
+                                        <Box sx={{ fontWeight: 1000, m: 1, fontSize: '30px', color: '#535353', fontFamily: 'Monospace' }}>Related Blogs</Box>
+
+                                    </Typography>
+                                </div>
 
                                 <div className="row">{showRelatedBlog()}</div>
                             </div>
@@ -380,6 +395,9 @@ const SingleBlog = ({ blog, query }) => {
                             <div className="container pt-5 pb-5">{showComments()}</div>
                         </article>
                     </main>
+
+
+
 
                 </Paper>
 

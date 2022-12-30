@@ -10,9 +10,7 @@ const Blog = () => {
             <Admin>
                 <div className="container-fluid" style={{backgroundColor:'#F5F5F5'}} >
                     <div className="row">
-                        <div className="col-md-12 pt-5 pb-5">
-                        <Typography variant='h2'>Create a new blog</Typography>
-                        </div>
+                      
                         <div className="col-md-12">
                             <BlogCreate />
                         </div>

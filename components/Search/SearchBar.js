@@ -167,8 +167,6 @@ export default function SearchBar() {
 
   const searchedBlogs = (results = []) => {
     return (
-
-
       <List sx={{ width: '100%' }}>
 
         {message && <p className="pt-4 text-muted font-italic">{message}</p>}

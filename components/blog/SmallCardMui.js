@@ -19,7 +19,7 @@ export default function ImgMediaCard({ blog }) {
         alt={blog.title}
         height="200"
         image={`${API}/blog/photo/${blog.slug}`}
-        sx={{padding:'10px',borderRadius:5}}
+        sx={{padding:'10px',borderRadius:10}}
       />
       <CardContent>
       <Typography sx={{color:'#595855',fontSize:'13px',padding:'10px',  display: { xs: 'none', sm: 'block' }}}     >
@@ -29,9 +29,9 @@ export default function ImgMediaCard({ blog }) {
                     </Link>{' '}
                     | {<AccessTimeIcon   style={{color:'#DB4437'}} fontSize='small' />} {moment(blog.updatedAt).fromNow()}
               </Typography>
-        <Link href={`/blogs/${blog.slug}`} variant="body1" color="text.secondary" component="div">
+        <a href={`/blogs/${blog.slug}`} variant="body1" color="text.secondary" component="div">
         {blog.title}
-        </Link>
+        </a>
       </CardContent>
       <CardActions>
 

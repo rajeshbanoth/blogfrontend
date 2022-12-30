@@ -1,5 +1,5 @@
 import SearchIcon from '@mui/icons-material/Search';
-import { Paper, Typography } from '@mui/material';
+import { Box, Grid, Paper, Typography } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import InputBase from '@mui/material/InputBase';
 import ListItem from '@mui/material/ListItem';
@@ -10,13 +10,14 @@ import { alpha, styled } from '@mui/material/styles';
 import dynamic from 'next/dynamic';
 import Router, { withRouter } from 'next/router';
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { getCookie, isAuth } from '../../actions/auth';
 import { singleBlog, updateBlog } from '../../actions/blog';
 import { getCategories } from '../../actions/category';
 import { getTags } from '../../actions/tag';
 import { API } from '../../config';
 import '../../node_modules/react-quill/dist/quill.snow.css';
+import EmailEditor from 'react-email-editor';
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 const Editor = dynamic(() => import('../../helpers/Editor'), { ssr: false });
 const MediumEditor = dynamic(() => import('../../Editor/MediumEditor'), { ssr: false });
@@ -64,6 +65,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 const BlogUpdate = ({ router }) => {
+
+    const emailEditorRef = useRef(null);
     const [body, setBody] = useState('');
     const [jsondata, setjsondata] = useState(null)
 
@@ -77,6 +80,7 @@ const BlogUpdate = ({ router }) => {
     const [checkedTag, setCheckedTag] = useState([]); // tags
 
     const [imagename, setimagename] = useState('')
+    const [bodyData, setbodyData] = useState('')
 
     const [values, setValues] = useState({
         title: '',
@@ -104,9 +108,10 @@ const BlogUpdate = ({ router }) => {
                 if (data.error) {
                     console.log(data.error);
                 } else {
-                    console.log(JSON.parse(data.body))
+                    console.log(data)
                     setValues({ ...values, title: data.title });
-                    setBody(data.body);
+                    setbodyData(JSON.parse(data.body))
+                    setBody(JSON.parse(data.body).body);
                     setCategoriesArray(data.categories);
                     setTagsArray(data.tags);
                     setjsondata(JSON.parse(data.body))
@@ -204,6 +209,23 @@ const BlogUpdate = ({ router }) => {
     };
 
 
+
+    //eamil editor
+    const onLoad = () => {
+        // editor instance is created
+        // you can load your template here;
+        // const templateJson = {};
+    
+        // emailEditorRef.current.editor.loadDesign(bodyData.body);
+    }
+
+
+    const onReady = () => {
+        // editor is ready
+        console.log('onReady');
+    };
+
+
     // edior js handlebodydata
     const handlejsondata = (jsondata, htmldata) => {
 
@@ -211,6 +233,7 @@ const BlogUpdate = ({ router }) => {
         console.log(string)
         formData.set('body', string);
         formData.set('html', htmldata);
+        formData.set('editor', bodyData.editor)
         if (typeof window !== 'undefined') {
             localStorage.setItem('jsonblog', string);
         }
@@ -279,13 +302,17 @@ const BlogUpdate = ({ router }) => {
     };
 
     const handleBody = e => {
-        console.log(e)
+
         setBody(e);
+        formData.set('editor', bodyData.editor)
         formData.set('body', e);
     };
 
     const editBlog = e => {
         e.preventDefault();
+        for (var pair of formData.entries()) {
+            console.log(pair[0] + ', ' + pair[1]);
+        }
         updateBlog(formData, token, router.query.slug).then(data => {
             if (data.error) {
                 setValues({ ...values, error: data.error });
@@ -328,8 +355,8 @@ const BlogUpdate = ({ router }) => {
                     <div className="form-group">
 
                         <Paper>
-
-                            {body.substring(2, 6) === "time" ? (<>  <MediumEditor editorjson={handlejsondata} value={jsondata} /> </>) : (<><Editor handlechange={handleBody} value={body} /> </>)}
+                            {bodyData.editor === "Quill" && (<><Editor handlechange={handleBody} value={body} /> </>)}
+                            {bodyData.editor === "Editorjs" && (<>  <MediumEditor editorjson={handlejsondata} value={jsondata} /></>)}
 
                         </Paper>
 
@@ -392,7 +419,103 @@ const BlogUpdate = ({ router }) => {
     }
     return (
         <div className="container-fluid pb-5">
-            <div className="row">
+
+            {bodyData.editor === "EmailEditor" && (
+
+                <>
+                    <Box>
+                        {showSuccess()}
+                        {showError()}
+                        <Paper>
+                            <div className="form-group" >
+                                <label className="text-muted">Title</label>
+                                <input type="text" className="form-control" value={title} onChange={handleChange('title')} />
+                            </div>
+                        </Paper>
+
+                    </Box>
+
+                    <Box>
+                        <EmailEditor ref={emailEditorRef} onLoad={onLoad} onReady={onReady} />
+                    </Box>
+
+                    <Box>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} sm={12} md={4} lg={4}>
+                                <Paper style={{ borderRadius: '10px' }}>
+
+                                    <div style={{ padding: '20px' }}>
+                                        <div className="form-group pb-2">
+                                            <h5>Featured image</h5>
+                                            <hr />
+
+                                            <small className="text-muted">Max size: 1mb</small>
+                                            <br />
+                                            <label className="btn btn-outline-info">
+                                                Upload featured image
+                                                <input onChange={handleChange('photo')} type="file" accept="image/*" hidden />
+                                            </label>
+                                            <Typography>{imagename}</Typography>
+                                        </div>
+                                    </div>
+                                </Paper>
+
+
+                            </Grid>
+                            <Grid item xs={12} sm={12} md={4} lg={4}>
+                                <Paper style={{ borderRadius: '10px' }}>
+                                    <Typography variant='h4' style={{ padding: '10px' }}>Categories</Typography>
+
+                                    <Search>
+                                        <SearchIconWrapper>
+                                            <SearchIcon />
+                                        </SearchIconWrapper>
+                                        <StyledInputBase
+                                            placeholder="Search…"
+                                            inputProps={{ 'aria-label': 'search' }}
+                                            onChange={handlechangefiltercat}
+                                        />
+                                    </Search>
+                                    <hr />
+
+                                    <ul style={{ maxHeight: '200px', overflowY: 'scroll' }}>{showCategories()}</ul>
+                                </Paper>
+
+                            </Grid>
+                            <Grid item xs={12} sm={12} md={4} lg={4}>
+                                <Paper style={{ borderRadius: '10px' }}>
+                                    <Typography variant='h4' style={{ padding: '10px' }}>Tags</Typography>
+                                    <Search>
+                                        <SearchIconWrapper>
+                                            <SearchIcon />
+                                        </SearchIconWrapper>
+                                        <StyledInputBase
+                                            placeholder="Search…"
+                                            inputProps={{ 'aria-label': 'search' }}
+                                            onChange={handlechangefiltertag}
+
+                                        />
+                                    </Search>
+                                    <hr />
+                                    <ul style={{ maxHeight: '200px', overflowY: 'scroll' }}>{showTags()}</ul>
+                                </Paper>
+
+                            </Grid>
+
+
+
+
+
+
+                        </Grid>
+
+                    </Box>
+                </>
+            )}
+
+
+
+{!bodyData.editor === "EmailEditor" && ( <div className="row">
                 <div className="col-md-8">
                     {updateBlogForm()}
 
@@ -453,9 +576,6 @@ const BlogUpdate = ({ router }) => {
                     </div>
                     <div>
 
-
-
-
                         <Paper style={{ borderRadius: '10px' }}>
                             <Typography variant='h4' style={{ padding: '10px' }}>Tags</Typography>
                             <Search>
@@ -472,11 +592,10 @@ const BlogUpdate = ({ router }) => {
                             <hr />
                             <ul style={{ maxHeight: '200px', overflowY: 'scroll' }}>{showTags()}</ul>
                         </Paper>
-
-
                     </div>
                 </div>
-            </div>
+            </div>)}
+           
         </div>
     );
 };

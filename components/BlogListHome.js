@@ -38,7 +38,7 @@ export default function Bloglisthome(props) {
                         <div>
                             <Typography component="div">
 
-                                <Box sx={{  fontSize: 'h6.fontSize', m: 1,fontWeight:800,color:'#0F9D58' }}>
+                                <Box sx={{ fontSize: 'h6.fontSize', m: 1, fontWeight: 800, color: '#0F9D58' }}>
                                     {cat}
                                 </Box>
                             </Typography>
@@ -59,12 +59,7 @@ export default function Bloglisthome(props) {
                                         <div>
                                             <Homepagecard blog={blog} />
                                         </div>
-
-
-
-
-
-                                    </div>
+                                  </div>
                                 )}
 
 
@@ -72,43 +67,19 @@ export default function Bloglisthome(props) {
                             </>))}
 
 
-                            <div className="display-2 pb-3 pt-3 text-center font-weight-bold" style={{ marginTop: '30px', display: 'center', overflowWrap: 'break-word', justifyContent: 'center', paddingLeft: '5px', paddingRight: '5px' }}>
+                        <div className="display-2 pb-3 pt-3 text-center font-weight-bold" style={{ marginTop: '30px', display: 'center', overflowWrap: 'break-word', justifyContent: 'center', paddingLeft: '5px', paddingRight: '5px' }}>
 
 
-                            <Typography component="div">
+                           <Typography component="div">
+                                <Link href={`/categories/${cat.toLowerCase()}`} underline="none">
+                                    View All {cat} Blogs
+                                </Link>
+                            </Typography>
 
-
-
-<Link href={`/categories/${cat.toLowerCase()}`}underline="none">
-View All {cat} Blogs
-</Link>
-</Typography>
-
-
-
-</div>
-
-                           
-
-
-
-
+                        </div>
 
 
                     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 </>
             )
